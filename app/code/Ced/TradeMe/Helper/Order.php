@@ -561,6 +561,10 @@ class Order extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function notificationSuccess($count)
     {
+    	# 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+		# "Prevent the `Ced_TradeMe` module from spamming in backend notificatons («New Trade Me Orders»)":
+		# https://github.com/braumach/site/issues/5
+    	return;
         $model = $this->_objectManager->create('\Magento\AdminNotification\Model\Inbox');
         $date = date("Y-m-d H:i:s");
         $model->setData('severity', 4);
