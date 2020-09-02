@@ -11,9 +11,9 @@
 !/.htaccess
 !/composer.json
 !/readme.md
-!app/code/**/*
-!app/design/frontend/TemplateMonster/theme007/**/*
-!app/etc/config.php
+!/app/code/**/*
+!/app/design/frontend/TemplateMonster/theme007/**/*
+!/app/etc/config.php
 /dev
 /update/
 # 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
