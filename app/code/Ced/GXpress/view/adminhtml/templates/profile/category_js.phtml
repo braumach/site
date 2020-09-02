@@ -1,0 +1,505 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_GXpress
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+
+$categories = $block->getLevel();
+//$rootLevel = $block->getLevel(0);
+$rootLevel = $categories[0];
+
+$profileId = '';
+$savedRootLevel = $savedLevel1 = $savedLevel2 = $savedLevel3 = $savedLevel4 = $savedLevel5 = $savedLevel6 = "";
+if ($this->_profile && $this->_profile->getId()) {
+    $profileId = $this->_profile->getId();;
+    $categoryJson = $this->_profile->getData('profile_category');
+    $category = json_decode($categoryJson, true);
+    $level_1 = $categories[1];
+    $level_2 = $categories[2];
+    $level_3 = $categories[3];
+    $level_4 = $categories[4];
+    $level_5 = $categories[5];
+    $level_6 = $categories[6];
+    $savedRootLevel = isset($category[0]) ? $category[0] : "";
+    $savedLevel1 = isset($category[1]) ? $category[1] : "";
+    $savedLevel2 = isset($category[2]) ? $category[2] : "";
+    $savedLevel3 = isset($category[3]) ? $category[3] : "";
+    $savedLevel4 = isset($category[4]) ? $category[4] : "";
+    $savedLevel5 = isset($category[5]) ? $category[5] : "";
+    $savedLevel6 = isset($category[6]) ? $category[6] : "";
+}
+?>
+<script>
+    require([
+        "jquery",
+    ], function ($) {
+        var rootLevel =<?php echo json_encode($rootLevel);?>;
+
+        var savedRootLevel = "<?php echo $savedRootLevel; ?>";
+        var savedLevel1 = "<?php echo $savedLevel1 ?>";
+        var savedLevel2 = "<?php echo $savedLevel2; ?>";
+        var savedLevel3 = "<?php echo $savedLevel3; ?>";
+        var savedLevel4 = "<?php echo $savedLevel4; ?>";
+        var savedLevel5 = "<?php echo $savedLevel5; ?>";
+        var savedLevel6 = "<?php echo $savedLevel6; ?>";
+
+        var leaf = true;
+        if (savedRootLevel == "") {
+            $('[name="level_0"]').prepend('<option value="" selected= selected>Please select root-category</option>');
+            <?php
+            $option = array();
+            foreach ($rootLevel as $value) {
+                $option[] = $value['csv_firstlevel_id'];
+            }
+            $option = array_unique($option);
+            foreach ($option as $value) { ?>
+            $('[name="level_0"]').append('<option value="<?= $value ?>"><?= $value ?></option>');
+            <?php }
+            ?>
+            $('[name="level_1"]').prepend('<option value="">Please select level 1 category</option>');
+            $('[name="level_1"]').attr('disabled', 'disabled');
+            $('[name="level_2"]').prepend('<option value="">Please select level 2 category</option>');
+            $('[name="level_2"]').attr('disabled', 'disabled');
+            $('[name="level_3"]').prepend('<option value="">Please select level 3 category</option>');
+            $('[name="level_3"]').attr('disabled', 'disabled');
+            $('[name="level_4"]').prepend('<option value="">Please select level 4 category</option>');
+            $('[name="level_4"]').attr('disabled', 'disabled');
+            $('[name="level_5"]').prepend('<option value="">Please select level 5 category</option>');
+            $('[name="level_5"]').attr('disabled', 'disabled');
+            $('[name="level_6"]').prepend('<option value="">Please select level 6 category</option>');
+            $('[name="level_6"]').attr('disabled', 'disabled');
+        } else {
+            if (savedLevel1 == "") {
+                $('.field-level_1').hide();
+                $('[name="level_1"]').removeClass('required-entry _required');
+            }
+            if (savedLevel2 == "") {
+                $('.field-level_2').hide();
+                $('[name="level_2"]').removeClass('required-entry _required');
+            }
+            if (savedLevel3 == "") {
+                $('.field-level_3').hide();
+                $('[name="level_3"]').removeClass('required-entry _required');
+            }
+            if (savedLevel4 == "") {
+                $('.field-level_4').hide();
+                $('[name="level_4"]').removeClass('required-entry _required');
+            }
+            if (savedLevel5 == "") {
+                $('.field-level_5').hide();
+                $('[name="level_5"]').removeClass('required-entry _required');
+            }
+            if (savedLevel6 == "") {
+                $('.field-level_6').hide();
+                $('[name="level_6"]').removeClass('required-entry _required');
+            }
+        }
+        $('[name="level_0"]').change(function () {
+            <?php //$level_1 = $block->getLevel(1);?>
+            <?php $level_1 = $categories[1];?>
+            var level_1 =<?php echo json_encode($level_1);?>;
+            leaf = true;
+            $('.field-level_1').show();
+            $('.field-level_2').show();
+            $('.field-level_3').show();
+            $('.field-level_4').show();
+            $('.field-level_5').show();
+            $('.field-level_6').show();
+            $('[name="level_1"]').empty();
+            $('[name="level_2"]').empty();
+            $('[name="level_3"]').empty();
+            $('[name="level_4"]').empty();
+            $('[name="level_5"]').empty();
+            $('[name="level_6"]').empty();
+            $('[name="level_1"]').removeAttr('disabled');
+            $('[name="level_1"]').append('<option value="">Please select level 1 category</option>');
+            $('[name="level_2"]').prepend('<option value="">Please select level 2 category</option>');
+            $('[name="level_2"]').attr('disabled', 'disabled');
+            $('[name="level_3"]').prepend('<option value="">Please select level 3 category</option>');
+            $('[name="level_3"]').attr('disabled', 'disabled');
+            $('[name="level_4"]').prepend('<option value="">Please select level 4 category</option>');
+            $('[name="level_4"]').attr('disabled', 'disabled');
+            $('[name="level_5"]').prepend('<option value="">Please select level 5 category</option>');
+            $('[name="level_5"]').attr('disabled', 'disabled');
+            $('[name="level_6"]').prepend('<option value="">Please select level 6 category</option>');
+            $('[name="level_6"]').attr('disabled', 'disabled');
+            var cat_id = $('[name="level_0"]').val();
+            for (var key in level_1) {
+                for (var subkey in level_1[key]) {
+                    if ((subkey == 'csv_firstlevel_id') && (level_1[key][subkey] == cat_id)) {
+                        leaf = false;
+                        $('[name="level_1"]').append('<option value="' + level_1[key]['csv_secondlevel_id'] + '">' + level_1[key]['csv_secondlevel_id'] + '</option>');
+                    }
+                }
+            }
+            if (leaf) {
+                var id = $('#level_0').val();
+                $('[name="level_1"]').empty();
+                $('[name="level_1"]').removeClass('required-entry _required');
+                $('[name="level_1"]').append('<option value="">category have no leaf category</option>');
+                getAttributes(id);
+            }
+        });
+        $('[name="level_1"]').change(function () {
+            <?php $level_2 = $categories[2];?>
+            var level_2 =<?php echo json_encode($level_2);?>;
+            leaf = true;
+            $('.field-level_2').show();
+            $('.field-level_3').show();
+            $('.field-level_4').show();
+            $('.field-level_5').show();
+            $('.field-level_6').show();
+            $('[name="level_2"]').empty();
+            $('[name="level_3"]').empty();
+            $('[name="level_4"]').empty();
+            $('[name="level_5"]').empty();
+            $('[name="level_6"]').empty();
+            $('[name="level_2"]').removeAttr('disabled');
+            $('[name="level_2"]').append('<option value="">Please select level 2 category</option>');
+            $('[name="level_3"]').prepend('<option value="">Please select level 3 category</option>');
+            $('[name="level_3"]').attr('disabled', 'disabled');
+            $('[name="level_4"]').prepend('<option value="">Please select level 4 category</option>');
+            $('[name="level_4"]').attr('disabled', 'disabled');
+            $('[name="level_5"]').prepend('<option value="">Please select level 5 category</option>');
+            $('[name="level_5"]').attr('disabled', 'disabled');
+            $('[name="level_6"]').prepend('<option value="">Please select level 6 category</option>');
+            $('[name="level_6"]').attr('disabled', 'disabled');
+            var cat_id = $('[name="level_1"]').val();
+            for (var key in level_2) {
+                for (var subkey in level_2[key]) {
+                    if ((subkey == 'csv_secondlevel_id') && (level_2[key][subkey] == cat_id)) {
+                        leaf = false;
+                        $('[name="level_2"]').append('<option value="' + level_2[key]['csv_thirdlevel_id'] + '">' + level_2[key]['csv_thirdlevel_id'] + '</option>');
+                    }
+                }
+            }
+            if (leaf) {
+                var id = $('#level_1').val();
+                $('[name="level_2"]').empty();
+                $('[name="level_2"]').removeClass('required-entry _required');
+                $('[name="level_2"]').append('<option value="">category have no leaf category</option>');
+                getAttributes($('#level_0').val());
+            }
+        });
+        $('[name="level_2"]').change(function () {
+            <?php $level_3 = $categories[3];?>
+            var level_3 =<?php echo json_encode($level_3);?>;
+            leaf = true;
+            $('.field-level_3').show();
+            $('.field-level_4').show();
+            $('.field-level_5').show();
+            $('.field-level_6').show();
+            $('[name="level_3"]').empty();
+            $('[name="level_4"]').empty();
+            $('[name="level_5"]').empty();
+            $('[name="level_6"]').empty();
+            $('[name="level_3"]').removeAttr('disabled');
+            $('[name="level_3"]').append('<option value="">Please select level 3 category</option>');
+            $('[name="level_4"]').prepend('<option value="">Please select level 4 category</option>');
+            $('[name="level_4"]').attr('disabled', 'disabled');
+            $('[name="level_5"]').prepend('<option value="">Please select level 5 category</option>');
+            $('[name="level_5"]').attr('disabled', 'disabled');
+            $('[name="level_6"]').prepend('<option value="">Please select level 6 category</option>');
+            $('[name="level_6"]').attr('disabled', 'disabled');
+            var cat_id = $('[name="level_2"]').val();
+            for (var key in level_3) {
+                for (var subkey in level_3[key]) {
+                    if ((subkey == 'csv_thirdlevel_id') && (level_3[key][subkey] == cat_id)) {
+                        leaf = false;
+                        $('[name="level_3"]').append('<option value="' + level_3[key]['csv_fourthlevel_id'] + '">' + level_3[key]['csv_fourthlevel_id'] + '</option>');
+                    }
+                }
+            }
+            if (leaf) {
+                var id = $('#level_2').val();
+                $('[name="level_3"]').empty();
+                $('[name="level_3"]').removeClass('required-entry _required');
+                $('[name="level_3"]').append('<option value="">category have no leaf category</option>');
+                getAttributes($('#level_0').val());
+            }
+        });
+        $('[name="level_3"]').change(function () {
+            <?php $level_4 = $categories[4];?>
+            var level_4 =<?php echo json_encode($level_4);?>;
+            leaf = true;
+            $('.field-level_4').show();
+            $('.field-level_5').show();
+            $('.field-level_6').show();
+            $('[name="level_4"]').empty();
+            $('[name="level_5"]').empty();
+            $('[name="level_6"]').empty();
+            $('[name="level_4"]').removeAttr('disabled');
+            $('[name="level_4"]').append('<option value="">Please select level 4 category</option>');
+            $('[name="level_5"]').prepend('<option value="">Please select level 5 category</option>');
+            $('[name="level_5"]').attr('disabled', 'disabled');
+            $('[name="level_6"]').prepend('<option value="">Please select level 6 category</option>');
+            $('[name="level_6"]').attr('disabled', 'disabled');
+            var cat_id = $('[name="level_3"]').val();
+            for (var key in level_4) {
+                for (var subkey in level_4[key]) {
+                    if ((subkey == 'csv_fourthlevel_id') && (level_4[key][subkey] == cat_id)) {
+                        leaf = false;
+                        $('[name="level_4"]').append('<option value="' + level_4[key]['csv_fifthlevel_id'] + '">' + level_4[key]['csv_fifthlevel_id'] + '</option>');
+                    }
+                }
+            }
+            if (leaf) {
+                var id = $('#level_3').val();
+                $('[name="level_4"]').empty();
+                $('[name="level_4"]').removeClass('required-entry _required');
+                $('[name="level_4"]').append('<option value="">category have no leaf category</option>');
+                getAttributes($('#level_0').val());
+            }
+        });
+        $('[name="level_4"]').change(function () {
+            <?php $level_5 = $categories[5];?>
+            var level_5 =<?php echo json_encode($level_5);?>;
+            leaf = true;
+            $('.field-level_5').show();
+            $('.field-level_6').show();
+            $('[name="level_5"]').empty();
+            $('[name="level_6"]').empty();
+            $('[name="level_5"]').removeAttr('disabled');
+            $('[name="level_5"]').append('<option value="">Please select level 5 category</option>');
+            $('[name="level_6"]').prepend('<option value="">Please select level 6 category</option>');
+            $('[name="level_6"]').attr('disabled', 'disabled');
+            var cat_id = $('[name="level_4"]').val();
+            for (var key in level_5) {
+                for (var subkey in level_5[key]) {
+                    if ((subkey == 'csv_fifthlevel_id') && (level_5[key][subkey] == cat_id)) {
+                        leaf = false;
+                        $('[name="level_5"]').append('<option value="' + level_5[key]['csv_sixthlevel_id'] + '">' + level_5[key]['csv_sixthlevel_id'] + '</option>');
+                    }
+                }
+            }
+            if (leaf) {
+                var id = $('#level_4').val();
+                $('[name="level_5"]').empty();
+                $('[name="level_5"]').removeClass('required-entry _required');
+                $('[name="level_5"]').append('<option value="">category have no leaf category</option>');
+                getAttributes($('#level_0').val());
+            }
+        });
+        $('[name="level_5"]').change(function () {
+            <?php $level_6 = $categories[6];?>
+            var level_6 =<?php echo json_encode($level_6);?>;
+            leaf = true;
+            $('.field-level_6').show();
+            $('[name="level_6"]').empty();
+            $('[name="level_6"]').removeAttr('disabled');
+            $('[name="level_6"]').append('<option value="">Please select level 6 category</option>');
+            var cat_id = $('[name="level_5"]').val();
+            for (var key in level_6) {
+                for (var subkey in level_6[key]) {
+                    if ((subkey == 'csv_sixthlevel_id') && (level_6[key][subkey] == cat_id)) {
+                        leaf = false;
+                        $('[name="level_6"]').append('<option value="' + level_6[key]['csv_seventhlevel_id'] + '">' + level_6[key]['csv_seventhlevel_id'] + '</option>');
+                    }
+                }
+            }
+            if (leaf) {
+                var id = $('#level_5').val();
+                $('[name="level_6"]').empty();
+                $('[name="level_6"]').removeClass('required-entry _required');
+                $('[name="level_6"]').append('<option value="">category have no leaf category</option>');
+                getAttributes($('#level_0').val());
+            }
+        });
+        /* $('[name="level_5"]').change(function(){
+             var id = $('#level_5').val();
+             getAttributes(id);
+         });*/
+
+        $('[name="level_6"]').change(function () {
+            var id = $('#level_6').val();
+            getAttributes($('#level_0').val());
+        });
+
+
+        // FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 0
+        if (savedRootLevel) {
+            $('[name="level_0"]').empty();
+            for (var key in rootLevel) {
+                for (var subkey in rootLevel[key]) {
+                    if (subkey == 'csv_firstlevel_id') {
+                        if (savedRootLevel == rootLevel[key]['csv_firstlevel_id']) {
+                            $('[name="level_0"]').append('<option  selected="selected" value="' + rootLevel[key]['csv_firstlevel_id'] + '">' + rootLevel[key]['csv_firstlevel_id'] + '</option>');
+                        } else {
+                            $('[name="level_0"]').append('<option value="' + rootLevel[key]['csv_firstlevel_id'] + '">' + rootLevel[key]['csv_firstlevel_id'] + '</option>');
+                        }
+                    }
+                }
+            }
+        }
+
+        // FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 2
+        if (savedLevel1) {
+            var level_1 = <?php echo json_encode($level_1);?>;
+            $('[name="level_1"]').empty();
+            var cat_id = $('[name="level_0"]').val();
+            for (var key in level_1) {
+                for (var subkey in level_1[key]) {
+                    if (subkey == 'csv_secondlevel_id') {
+                        if (level_1[key]['csv_firstlevel_id'] == cat_id) {
+                            if (savedLevel1 == level_1[key]['csv_secondlevel_id']) {
+                                $('[name="level_1"]').append('<option  selected="selected" value="' + level_1[key]['csv_secondlevel_id'] + '">' + level_1[key]['csv_secondlevel_id'] + '</option>');
+                            } else {
+                                $('[name="level_1"]').append('<option value="' + level_1[key]['csv_secondlevel_id'] + '">' + level_1[key]['csv_secondlevel_id'] + '</option>');
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 3
+        if (savedLevel2) {
+            var level_2 = <?php echo json_encode($level_2);?>;
+            $('[name="level_2"]').empty();
+            var cat_id = $('[name="level_1"]').val();
+            for (var key in level_2) {
+                for (var subkey in level_2[key]) {
+                    if (subkey == 'csv_thirdlevel_id') {
+                        if (level_2[key]['csv_secondlevel_id'] == cat_id) {
+                            if (savedLevel2 == level_2[key]['csv_thirdlevel_id']) {
+                                $('[name="level_2"]').append('<option  selected="selected" value="' + level_2[key]['csv_thirdlevel_id'] + '">' + level_2[key]['csv_thirdlevel_id'] + '</option>');
+                            } else {
+                                $('[name="level_2"]').append('<option value="' + level_2[key]['csv_thirdlevel_id'] + '">' + level_2[key]['csv_thirdlevel_id'] + '</option>');
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 4
+        if (savedLevel3) {
+            var level_3 = <?php echo json_encode($level_3);?>;
+            $('[name="level_3"]').empty();
+            var cat_id = $('[name="level_2"]').val();
+            for (var key in level_3) {
+                for (var subkey in level_3[key]) {
+                    if (subkey == 'csv_fourthlevel_id') {
+                        if (level_3[key]['csv_thirdlevel_id'] == cat_id) {
+                            if (savedLevel3 == level_3[key]['csv_fourthlevel_id']) {
+                                $('[name="level_3"]').append('<option  selected="selected" value="' + level_3[key]['csv_fourthlevel_id'] + '">' + level_3[key]['csv_fourthlevel_id'] + '</option>');
+                            } else {
+                                $('[name="level_3"]').append('<option value="' + level_3[key]['csv_fourthlevel_id'] + '">' + level_3[key]['csv_fourthlevel_id'] + '</option>');
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 5
+        if (savedLevel4) {
+            var level_4 = <?php echo json_encode($level_4);?>;
+            $('[name="level_4"]').empty();
+            var cat_id = $('[name="level_3"]').val();
+            for (var key in level_4) {
+                for (var subkey in level_4[key]) {
+                    if (subkey == 'csv_fifthlevel_id') {
+                        if (level_4[key]['csv_fourthlevel_id'] == cat_id) {
+                            if (savedLevel4 == level_4[key]['csv_fifthlevel_id']) {
+                                $('[name="level_4"]').append('<option  selected="selected" value="' + level_4[key]['csv_fifthlevel_id'] + '">' + level_4[key]['csv_fifthlevel_id'] + '</option>');
+                            } else {
+                                $('[name="level_4"]').append('<option value="' + level_4[key]['csv_fifthlevel_id'] + '">' + level_4[key]['csv_fifthlevel_id'] + '</option>');
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        // FOR SETTING SAVED VALUES AFTER SAVING THEM IN LEVEL 6
+        if (savedLevel5) {
+            var level_5 = <?php echo json_encode($level_5);?>;
+            $('[name="level_5"]').empty();
+            var cat_id = $('[name="level_4"]').val();
+            for (var key in level_5) {
+                for (var subkey in level_5[key]) {
+                    if (subkey == 'csv_sixthlevel_id') {
+                        if (level_5[key]['csv_fifthlevel_id'] == cat_id) {
+                            if (savedLevel5 == level_5[key]['csv_sixthlevel_id']) {
+                                $('[name="level_5"]').append('<option  selected="selected" value="' + level_5[key]['csv_sixthlevel_id'] + '">' + level_5[key]['csv_sixthlevel_id'] + '</option>');
+                            } else {
+                                $('[name="level_5"]').append('<option value="' + level_5[key]['csv_sixthlevel_id'] + '">' + level_5[key]['csv_sixthlevel_id'] + '</option>');
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        if (savedLevel6) {
+            var level_6 = <?php echo json_encode($level_6);?>;
+            $('[name="level_6"]').empty();
+            var cat_id = $('[name="level_5"]').val();
+            for (var key in level_6) {
+                for (var subkey in level_6[key]) {
+                    if (subkey == 'csv_seventhlevel_id') {
+                        if (level_6[key]['csv_sixthlevel_id'] == cat_id) {
+                            if (savedLevel5 == level_6[key]['csv_seventhlevel_id']) {
+                                $('[name="level_6"]').append('<option  selected="selected" value="' + level_6[key]['csv_seventhlevel_id'] + '">' + level_6[key]['csv_seventhlevel_id'] + '</option>');
+                            } else {
+                                $('[name="level_6"]').append('<option value="' + level_6[key]['csv_seventhlevel_id'] + '">' + level_6[key]['csv_seventhlevel_id'] + '</option>');
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        var catData = [$('#level_0').val(), $('#level_1').val(), $('#level_2').val(), $('#level_3').val(), $('#level_4').val(), $('#level_5').val(), $('#level_6').val()];
+
+        function getAttributes(id) {
+            if ($('account_id'))
+                var accountId = document.getElementById('account_id').value;
+            var parameters = {
+                'profile_id': '<?php echo $profileId ?>',
+                'account_id': accountId,
+                'catId': id,
+                'items': JSON.stringify(catData)
+            }
+            var rurl = '<?php echo $this->getUrl('gxpress/profile/UpdateCategoryAttributes', array('_nosid' => true))?>';
+            $.ajax({
+                url: rurl,
+                type: 'POST',
+                data: parameters,
+                dataType: 'html',
+                showLoader: true,
+                success: function (response) {
+                    $('#attribute-gxpressAttributes-container').html(response);
+                },
+                error: function () {
+                    $('#attribute-gxpressAttributes-container').html();
+                }
+            });
+        }
+    });
+</script>
+<style type="text/css">
+    #profileproduct_massaction-form {
+        display: none;
+    }
+</style>
+<?php  ?>

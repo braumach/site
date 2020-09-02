@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<page layout="tm_amp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="amp.content">
+            <container name="amp.product.details" htmlTag="div" htmlClass="amp-product-details" after="amp.product.info.media">
+                <container name="product.info.main" htmlTag="div" htmlClass="amp-product-info-main" before="-">
+                    <container name="product.info.price" label="Product info auxiliary container" htmlTag="div" htmlClass="amp-product-info-price" after="product.info.review">
+                        <block class="Magento\Catalog\Block\Product\View" name="customize.button" as="customize_button" template="Zemez_Amp::catalog/product/view/form.phtml" />
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

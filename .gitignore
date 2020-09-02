@@ -1,0 +1,22 @@
+# 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# http://stackoverflow.com/questions/987142
+# http://stackoverflow.com/questions/9162919
+# http://stackoverflow.com/questions/8024924#comment15884195_8025106
+*
+!*/
+!/.editorconfig
+!/.gitignore
+# 2020-07-11 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "Add the modified standard files to the source control": https://github.com/dxmoto/site/issues/2
+!/.htaccess
+!/composer.json
+!/readme.md
+!app/code/**/*
+!app/design/frontend/TemplateMonster/theme007/**/*
+!app/etc/config.php
+/dev
+/update/
+/vendor/codeception
+/vendor/magento/framework/Test
+/vendor/magento/magento2-functional-testing-framework
+/vendor/tubalmartin

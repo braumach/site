@@ -1,0 +1,78 @@
+.cms-home.cms-index-index .finderProducts.vertical{ position:absolute; right:275px; top:50%; z-index:1024; -ms-transform:translateY(-50%); -webkit-transform:translateY(-50%);transform:translateY(-50%); width:350px; padding:20px;}
+.finder-index-index .finderProducts.vertical .finderDropdowns li { width:100% !important; }
+.finderProducts.vertical{ background-color:#fff; width: 100%; padding: 0; margin-bottom: 30px; }
+.finderDropdowns select { border: 2px solid #b9b9b9; border-radius: 10px; background-color:#fff; margin: 0 0 15px; font-size: 18px; font-weight: bold; color:#000; padding: 0 10px; background-image: url('../images/down-arrow.png'); background-repeat: no-repeat; background-position: right 10px center; background-size: 16px; -moz-appearance: none; -webkit-appearance: none; }
+.finderProducts button { display:none; }
+.finderProducts button.subscribe { display: block; width:100%; float:left; padding:10px; background-color:#ff4d33; color:#fff; text-transform:uppercase; font-weight:600; letter-spacing:1px; border-radius:10px; }
+
+.finder-index-index .finderDropdowns ul { margin-left: -15px; }
+.finder-index-index .finderDropdowns li { width:33.33%; float:left; padding-left:15px; }
+.finder-index-index .finderProducts h3{ font-size:26px; margin:0 0 20px; }
+
+/*
+.finderProducts { padding:15px; background-color:#f0f0f0; margin-bottom:20px; }
+*/
+
+.finderProducts h3 { color:#061743; font-size:22px; text-align:center; letter-spacing:2px; text-transform:uppercase; margin:0 0 15px; }
+.finderProducts:after, .finderProducts:before,.finderProducts ul:after { content:''; clear:both; display:block; }
+
+.finderProducts ul { list-style:none; margin:0; padding-left:0; }
+.finderDropdowns li label { font-weight:600; }
+.finderDropdowns li.column2 { width:49%; float:left; margin-right:2%; }
+.finderDropdowns li:nth-child(2n).column2 { margin-right:0; }
+.finderDropdowns li.column3 { width:32%; float:left; margin-right:2%; }
+.finderDropdowns li:nth-child(3n).column3 { margin-right:0; }
+.finderDropdowns li.column4 { width:23.5%; float:left; margin-right:2%; }
+.finderDropdowns li:nth-child(4n).column4 { margin-right:0; }
+.finderDropdowns li.column5 { width:18.4%; float:left; margin-right:2%; }
+.finderDropdowns li:nth-child(5n).column5 { margin-right:0; }
+
+.columns .column.main { width:100%; flex-basis:inherit !important; }
+
+.finderProducts.vertical {  }
+.finderProducts.vertical .finderDropdowns li.column2, .finderProducts.vertical .finderDropdowns li.column3,
+.finderProducts.vertical .finderDropdowns li.column4, .finderProducts.vertical .finderDropdowns li.column5 { width:100%; margin:0 0 10px; }
+
+.categoryGrid .product-item { text-align:center; }
+.cl { clear:both; }
+
+
+@media only screen and (max-width:1520px) {
+	.cms-home.cms-index-index .finderProducts.vertical{ right:30px; }
+}
+
+@media only screen and (max-width:1399px) {
+	.cms-home.cms-index-index .finderProducts.vertical{ right:25px; }
+}
+
+@media only screen and (max-width:999px) {
+    .finderDropdowns li.column5 { width:23.5%; }
+    .finderDropdowns li:nth-child(4n).column5 { margin-right:0; }
+    .finderDropdowns li:nth-child(5n).column5 { margin-right:2%; }
+	
+	.finder-index-index .finderDropdowns select{ min-height: 40px; font-size: 14px; margin: 0 0 10px; }
+	.finder-index-index .finderProducts button.subscribe{ font-size:14px; padding: 8px; }
+	
+}
+
+@media only screen and (max-width:768px) {
+    .finderDropdowns li.column3, .finderDropdowns li.column4 { width:49%; }
+    .finderDropdowns li:nth-child(2n).column3, .finderDropdowns li:nth-child(2n).column4 { margin-right:0; }
+    .finderDropdowns li:nth-child(3n).column3, .finderDropdowns li:nth-child(3n).column4 { margin-right:2%; }    
+    .finderDropdowns li.column5 { width:49%; }
+    .finderDropdowns li:nth-child(2n).column5 { margin-right:0; }
+	
+	.finder-index-index .finderDropdowns li { width:100%; }
+	.finder-index-index .finderProducts h3{ font-size:22px; margin:0 0 15px; }
+
+}
+
+@media only screen and (max-width:599px) {
+    .finderDropdowns li.column2, .finderDropdowns li.column3, .finderDropdowns li.column4, .finderDropdowns li.column5 { width:100%; margin-right:0; }
+	.cms-home.cms-index-index .finderProducts.vertical { right:0; left:0; margin:0 auto; width:300px; }
+	.finderProducts h3{ font-size:20px; margin: 0 0 12px; }
+	.finderDropdowns select{ min-height: 40px; font-size: 14px; margin: 0 0 10px; }
+	.finderProducts button.subscribe{ font-size:14px; padding: 8px; }
+	
+	.finder-index-index .finderProducts h3{ font-size:20px; margin:0 0 12px; }
+}

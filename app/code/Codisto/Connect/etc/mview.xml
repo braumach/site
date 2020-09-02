@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Codisto LINQ Sync Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @package   Codisto_Connect
+ * @copyright 2016-2017 On Technology Pty. Ltd. (http://codisto.com/)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link      https://codisto.com/connect/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+	<view id="codisto_index_product" class="Codisto\Connect\Model\Indexer\Marketplace" group="indexer">
+		<subscriptions>
+			<table name="catalog_product_entity" entity_column="entity_id" />
+			<table name="catalog_product_entity_datetime" entity_column="entity_id" />
+			<table name="catalog_product_entity_decimal" entity_column="entity_id" />
+			<table name="catalog_product_entity_gallery" entity_column="entity_id" />
+			<table name="catalog_product_entity_int" entity_column="entity_id" />
+			<table name="catalog_product_entity_media_gallery" entity_column="value_id" />
+			<table name="catalog_product_entity_media_gallery_value" entity_column="entity_id" />
+			<table name="catalog_product_entity_text" entity_column="entity_id" />
+			<table name="catalog_product_entity_tier_price" entity_column="entity_id" />
+			<table name="catalog_product_entity_varchar" entity_column="entity_id" />
+			<table name="cataloginventory_stock_item" entity_column="product_id" />
+		</subscriptions>
+	</view>
+	<view id="codisto_index_category" class="Codisto\Connect\Model\Indexer\Marketplace" group="indexer">
+		<subscriptions>
+			<table name="catalog_category_entity" entity_column="entity_id" />
+			<table name="catalog_category_entity_datetime" entity_column="entity_id" />
+			<table name="catalog_category_entity_decimal" entity_column="entity_id" />
+			<table name="catalog_category_entity_int" entity_column="entity_id" />
+			<table name="catalog_category_entity_text" entity_column="entity_id" />
+			<table name="catalog_category_entity_varchar" entity_column="entity_id" />
+		</subscriptions>
+	</view>
+	<view id="codisto_index_order" class="Codisto\Connect\Model\Indexer\Marketplace" group="indexer">
+		<subscriptions>
+			<table name="sales_order" entity_column="entity_id" />
+			<table name="sales_invoice" entity_column="order_id" />
+			<table name="sales_shipment" entity_column="order_id" />
+			<table name="sales_shipment_track" entity_column="order_id" />
+		</subscriptions>
+	</view>
+</config>

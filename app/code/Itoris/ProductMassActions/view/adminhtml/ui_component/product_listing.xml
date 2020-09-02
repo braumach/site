@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * ITORIS
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the ITORIS's Magento Extensions License Agreement
+ * which is available through the world-wide-web at this URL:
+ * http://www.itoris.com/magento-extensions-license.html
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to sales@itoris.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extensions to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to the license agreement or contact sales@itoris.com for more information.
+ *
+ * @category   ITORIS
+ * @package    ITORIS_M2_PRODUCT_MASS_ACTIONS
+ * @copyright  Copyright (c) 2016 ITORIS INC. (http://www.itoris.com)
+ * @license    http://www.itoris.com/magento-extensions-license.html  Commercial License
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<!-- Mass-action dropdown options will be created via JavaScript to remain compatible with M2.0 and M2.1. Skipping creating here -->
+    <!--<container name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="mass_attribute">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Update an Attribute in Bulk</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEventAttribute('mass_attribute')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">mass_attribute</item>
+                        <item name="label" xsi:type="string" translate="true">Mass Attribute</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massAttribute"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="copy_custom_options">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">copy_custom_options</item>
+                        <item name="label" xsi:type="string" translate="true">Custom Options</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Replace Custom Options</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('replace_custom_options')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">replace_custom_options</item>
+                        <item name="label" xsi:type="string" translate="true">Replace</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massOptionsCopy">
+                            <param name="method">replace</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Append Custom Options</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('append_custom_options')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">append_custom_options</item>
+                        <item name="label" xsi:type="string" translate="true">Append</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massOptionsCopy">
+                            <param name="method">append</param>
+                        </item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Remove Custom Options</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure want to remove custom option from selected products?</item>
+                        </item>
+                        <item name="type" xsi:type="string">remove_custom_options</item>
+                        <item name="label" xsi:type="string" translate="true">Remove</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massOptionsRemove">
+                            <param name="method">remove</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="copy_relations">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">copy_relations</item>
+                        <item name="label" xsi:type="string" translate="true">Related Products</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Replace Relations</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('replace_relations')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">replace_relations</item>
+                        <item name="label" xsi:type="string" translate="true">Replace</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massRelationsCopy">
+                            <param name="method">replace</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Append Relations</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('append_relations')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">append_relations</item>
+                        <item name="label" xsi:type="string" translate="true">Append</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massRelationsCopy">
+                            <param name="method">append</param>
+                        </item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Remove Relations</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure want to remove relations from selected products?</item>
+                        </item>
+                        <item name="type" xsi:type="string">remove_relations</item>
+                        <item name="label" xsi:type="string" translate="true">Remove</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massRelationsRemove">
+                            <param name="method">remove</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="copy_upsells">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">copy_upsells</item>
+                        <item name="label" xsi:type="string" translate="true">Upsells</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Replace Upsells</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('replace_upsells')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">replace_upsells</item>
+                        <item name="label" xsi:type="string" translate="true">Replace</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massUpsellsCopy">
+                            <param name="method">replace</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Append Upsells</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('append_upsells')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">append_upsells</item>
+                        <item name="label" xsi:type="string" translate="true">Append</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massUpsellsCopy">
+                            <param name="method">append</param>
+                        </item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Remove Upsells</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure want to remove upsells from selected products?</item>
+                        </item>
+                        <item name="type" xsi:type="string">remove_upsells</item>
+                        <item name="label" xsi:type="string" translate="true">Remove</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massUpsellsRemove">
+                            <param name="method">remove</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="copy_crosssells">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">copy_crosssells</item>
+                        <item name="label" xsi:type="string" translate="true">Cross-sells</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Replace Cross-sells</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('replace_crosssells')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">replace_crosssells</item>
+                        <item name="label" xsi:type="string" translate="true">Replace</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massCrosssellsCopy">
+                            <param name="method">replace</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Append Cross-sells</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('append_crosssells')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">append_crosssells</item>
+                        <item name="label" xsi:type="string" translate="true">Append</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massCrosssellsCopy">
+                            <param name="method">append</param>
+                        </item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Remove Crosssells</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure want to remove cross-sells from selected products?</item>
+                        </item>
+                        <item name="type" xsi:type="string">remove_crosssells</item>
+                        <item name="label" xsi:type="string" translate="true">Remove</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massCrosssellsRemove">
+                            <param name="method">remove</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="copy_images">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">copy_images</item>
+                        <item name="label" xsi:type="string" translate="true">Images</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Replace Images</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('replace_images')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">replace_images</item>
+                        <item name="label" xsi:type="string" translate="true">Replace</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massImagesCopy">
+                            <param name="method">replace</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Append Images</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEvent('append_images')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">append_images</item>
+                        <item name="label" xsi:type="string" translate="true">Append</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massImagesCopy">
+                            <param name="method">append</param>
+                        </item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Remove Images</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure want to remove images from selected products?</item>
+                        </item>
+                        <item name="type" xsi:type="string">remove_images</item>
+                        <item name="label" xsi:type="string" translate="true">Remove</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massImagesRemove">
+                            <param name="method">remove</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+
+            <action name="copy_categories">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">copy_categories</item>
+                        <item name="label" xsi:type="string" translate="true">Categories</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Replace Categories</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEventCategory('replace_categories')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">replace_categories</item>
+                        <item name="label" xsi:type="string" translate="true">Replace</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massCategory">
+                            <param name="method">replace</param>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Add Categories</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEventCategory('append_categories')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">append_categories</item>
+                        <item name="label" xsi:type="string" translate="true">Append</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massCategory">
+                            <param name="method">append</param>
+                        </item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Remove Categories</item>
+                            <item name="message" xsi:type="string" translate="false">&lt;script&gt;iProductMassActions.attachMassActionEventCategory('remove_categories')&lt;/script&gt;</item>
+                        </item>
+                        <item name="type" xsi:type="string">remove_categories</item>
+                        <item name="label" xsi:type="string" translate="true">Remove</item>
+                        <item name="url" xsi:type="url" path="productmassactions/product/massCategory">
+                            <param name="method">remove</param>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </container>-->
+</listing>

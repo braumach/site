@@ -1,0 +1,19 @@
+{
+    "name": "ced/googleexpress-magento-2-integration",
+    "description": "GXpress Magento2 integration",
+    "require": {
+        "ced/integrator":"*",
+        "cedcommerce/google-apiclient":"2.0.0"
+    },
+    "type": "magento2-module",
+    "version": "0.0.2",
+    "license": [
+        "EULA"
+    ],
+    "autoload": {
+    "files": [ "registration.php" ],
+        "psr-4": {
+            "Ced\\GXpress\\": ""
+        }
+    }
+}

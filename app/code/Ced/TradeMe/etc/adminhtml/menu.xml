@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_TradeMe
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ced_TradeMe::TradeMe"
+             title="TradeMe"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="14"
+             resource="Ced_TradeMe::TradeMe"
+        />
+        <add id="Ced_TradeMe::product"
+             title="Products"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="1"
+             parent="Ced_TradeMe::TradeMe"
+             resource="Ced_TradeMe::trademe_products"
+        />
+        <add id="Ced_TradeMe::trademe_product"
+             title="Product Manager"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="5"
+             parent="Ced_TradeMe::product"
+             action="trademe/product/index"
+             resource="Ced_TradeMe::products"
+        />
+        <add id="Ced_TradeMe::trademe_profile"
+             title="Profile Manager"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="1"
+             parent="Ced_TradeMe::product"
+             action="trademe/profile/index"
+             resource="Ced_TradeMe::profiles"
+        />
+
+
+        <add id="Ced_TradeMe::account"
+             title="Trade Me Configuration"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="3"
+             parent="Ced_TradeMe::TradeMe"
+             resource="Ced_TradeMe::TradeMe"
+        />
+
+        <add id="Ced_TradeMe::trademe_account_listing"
+             title="Manage Accounts"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="1"
+             parent="Ced_TradeMe::account"
+             action="trademe/account/index"
+             resource="Ced_TradeMe::TradeMe"
+        />
+        <add id="Ced_TradeMe::trademe_configuration"
+             title="Configuration"
+             module="Ced_TradeMe"
+             sortOrder="10"
+             parent="Ced_TradeMe::account"
+             action="adminhtml/system_config/edit/section/trademe_config"
+             resource="Ced_TradeMe::account"
+        />
+
+        <add id="Ced_TradeMe::orders"
+             title="Orders"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="2"
+             parent="Ced_TradeMe::TradeMe"
+             resource="Ced_TradeMe::trademe_orders"
+        />
+
+        <add id="Ced_TradeMe::trademe_order_listing"
+             title="Manage Orders"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="1"
+             parent="Ced_TradeMe::orders"
+             action="trademe/order/index"
+             resource="Ced_TradeMe::view_trademe_orders"
+        />
+
+        <add id="Ced_TradeMe::extra"
+             title="Extras"
+             module="Ced_TradeMe"
+             sortOrder="25"
+             parent="Ced_TradeMe::TradeMe"
+             resource="Ced_TradeMe::extra"
+        />
+        <add id="Ced_TradeMe::knowledge_base"
+             title="Help And Support"
+             module="Ced_TradeMe"
+             sortOrder="2"
+             parent="Ced_TradeMe::extra"
+             action="trademe/request/help"
+             resource="Ced_TradeMe::knowledge_base"
+        />
+
+        <add id="Ced_TradeMe::developer"
+             title="Developer"
+             module="Ced_TradeMe"
+             sortOrder="20"
+             parent="Ced_TradeMe::TradeMe"
+             resource="Ced_TradeMe::developer"
+        />
+
+        <add id="Ced_TradeMe::trademe_cron"
+             title="Cron Logs"
+             module="Ced_TradeMe"
+             sortOrder="5"
+             parent="Ced_TradeMe::developer"
+             action="trademe/cron/index"
+             resource="Ced_TradeMe::crons"
+        />
+
+        <add id="Ced_TradeMe::logs"
+             title="Activity Logs"
+             translate="title"
+             module="Ced_TradeMe"
+             sortOrder="40"
+             parent="Ced_TradeMe::developer"
+             action="integrator/log/index"
+             resource="Ced_Integrator::activity_logs"
+        />
+    </menu>
+</config>

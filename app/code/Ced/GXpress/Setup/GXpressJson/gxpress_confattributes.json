@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "googleexpress_attribute_name": "googleex_color",
+    "magento_attribute_code": null,
+    "googleexpress_attribute_doc": "Color value as provided by the manufacturer.\n                      Example: Aqua; Burgundy; Mauve; Fuchsia",
+    "is_mapped": "0",
+    "googleexpress_attribute_enum": null,
+    "googleexpress_attribute_level": "Optional",
+    "googleexpress_attribute_type": "string,4000",
+    "googleexpress_attribute_depends_on": null
+  },
+  {
+    "id": "2",
+    "googleexpress_attribute_name": "googleex_size",
+    "magento_attribute_code": null,
+    "googleexpress_attribute_doc": "Example: S; M; L; 2; 4; 6",
+    "is_mapped": "0",
+    "googleexpress_attribute_enum": null,
+    "googleexpress_attribute_level": "Optional",
+    "googleexpress_attribute_type": "string,4000",
+    "googleexpress_attribute_depends_on": null
+  },
+  {
+    "id": "3",
+    "googleexpress_attribute_name": "googleex_agegroup",
+    "magento_attribute_code": null,
+    "googleexpress_attribute_doc": null ,
+    "is_mapped": "0",
+    "googleexpress_attribute_enum": null,
+    "googleexpress_attribute_level": "Optional",
+    "googleexpress_attribute_type": "string,4000",
+    "googleexpress_attribute_depends_on": null
+  },
+  {
+    "id": "4",
+    "googleexpress_attribute_name": "googleex_language",
+    "magento_attribute_code": null,
+    "googleexpress_attribute_doc": null ,
+    "is_mapped": "0",
+    "googleexpress_attribute_enum": null,
+    "googleexpress_attribute_level": "Optional",
+    "googleexpress_attribute_type": "string,4000",
+    "googleexpress_attribute_depends_on": null
+  }
+]

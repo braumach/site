@@ -1,0 +1,211 @@
+<?php
+    $helper = $this->helper('Brausearch\Customsearch\Helper\Data');
+    $isHomePage = $helper->isHomePage();
+?>
+
+<div id="brau-search">
+    <form id="form-brausearch" method="GET" action="<?php echo $block->getBaseUrl() . 'customsearch/brau/search/' ?>" autocomplete="off">
+        <span>FIND YOUR<br><strong>WIPER BLADES</strong></span>
+
+        <?php if ("wgit_default" == $helper->getStoreCode()): ?>
+            <select id="brau-type" class="option-text" name="brau-type" required>
+
+                <?php 
+                  $attribute_set = array(
+                      "9" => "Wipers",
+                      "15" => "Auto Gas Struts",
+                      "21" => "Universal Gas Struts",
+                      "13" => "Sensor",
+                      "11" => "02 Sensors",
+                      "17" => "Brake Pads"
+                    );
+                ?>
+
+                <option value="0">--Please Select--</option>
+                <?php foreach ($attribute_set as $key=>$value) : ?>
+                    <?php if (isset($_GET['brau-type']) && $key == $_GET['brau-type']) : ?>
+                        <option value="<?php echo $_GET['brau-type']; ?>" selected><?php echo $_GET['brau-type-text']; ?></option>
+                    <?php else : ?>
+                        <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                    <?php endif; ?>
+                <?php endforeach;?>
+
+            </select>
+            <label>TYPE</label>
+
+            <select id="brau-brand" class="option-text" name="brau-brand" required>
+              <?php if(isset($_GET['brau-brand']) && '0'!=$_GET['brau-brand']) : ?>
+                <option value="0">--Please Select--</option>
+                <option value="<?php echo $_GET['brau-brand']; ?>" selected><?php echo $_GET['brau-brand-text']; ?></option>
+              <?php elseif(isset($_GET['brau-brand']) && '0'==$_GET['brau-brand']): ?>
+                <option value="0"><?php echo "All"; ?></option>
+              <?php else : ?>
+                <option value="0">--Please Select--</option>
+              <?php endif; ?>
+            </select>
+            <label>MAKE</label>
+
+        <?php else: ?>
+            <select id="brau-brand" class="option-text" name="brau-brand" required>
+                <?php $val = $helper->getAttribute('brand_id'); ?>
+                <?php foreach($val as $key => $brand) : ?>
+                    <?php if(isset($_GET['brau-brand']) && $key == $_GET['brau-brand']) : ?>
+                        <option value="<?php echo $key; ?>" selected><?php echo $brand; ?></option>
+                    <?php else : ?>
+                        <option value="<?php echo $key; ?>"><?php echo $brand; ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+            <label>MAKE</label>
+        <?php endif; ?>
+
+        <input type="hidden" id="brau-type-text" value="0" name="brau-type-text"/>
+        <input type="hidden" id="brau-brand-text" value="0" name="brau-brand-text"/>
+
+        <select id="brau-model" class="option-text" name="brau-model" required>
+            <?php if(isset($_GET['brau-model']) && '0'!=$_GET['brau-model']) : ?>
+                <option value="0">--Please Select--</option>
+                <option value="<?php echo $_GET['brau-model']; ?>" selected><?php echo $_GET['brau-model']; ?></option>
+            <?php elseif (isset($_GET['brau-model']) && '0'==$_GET['brau-model']): ?>
+                <option value="0" selected><?php echo "All"; ?></option>
+            <?php else : ?>
+                <option value="0">--Please Select--</option>
+            <?php endif; ?>
+        </select>
+        <label>MODEL</label>
+
+        <select id="brau-year" class="option-text" name="brau-year" required>
+            <?php if(isset($_GET['brau-year']) && '0'!=$_GET['brau-year']) : ?>
+                <option value="0">--Please Select--</option>
+                <option value="<?php echo $_GET['brau-year']; ?>" selected><?php echo $_GET['brau-year']; ?></option>
+            <?php elseif(isset($_GET['brau-year']) && '0'==$_GET['brau-year']) : ?>
+              <option value="0" selected><?php echo "All"; ?></option>
+            <?php else : ?>
+              <option value="0">--Please Select--</option>
+            <?php endif; ?>
+        </select>
+        <label>YEAR</label>
+        <br/>
+        <button id="brau-submit" type="submit" title="Submit">SEARCH</button>
+
+        <a href=#>CAN'T FIND YOUR CAR LISTED?</a>
+    </form>
+    <script>
+        var attribute_set_id = "<?php
+                $brand = $helper->getAttribute('brand_id');
+                foreach ($brand as $key=>$value) {
+                    if ("" != $key)
+                        echo $key . ":" . $value . ",";
+                }
+            ?>",
+            attribute_keys = "<?php
+                $brand = $helper->getAttribute('brand_id');
+                echo "[";
+                foreach($brand as $key=>$value) {
+                    if("" != $key)
+                        echo $key . ",";
+                }
+                echo "]";
+            ?>";
+    </script>
+</div>
+
+<script>
+
+require(['jquery', 'jquery/ui'], function($){
+    // Generates model/year dropdown based on brand_id
+    $('select.option-text').change(function(e){
+        if(e.originalEvent) {
+            var attribute_set_key = $('#brau-type').val();
+            var attribute = $(this).attr('id');
+
+            // Clear all generated options
+            if ('brau-type' == attribute) {
+                $('#brau-brand').children('option:not(option[value="0"])').remove();
+                $('#brau-model').children('option:not(option[value="0"])').remove();
+                $('#brau-year').children('option:not(option[value="0"])').remove();
+                $('#brau-brand option').text('--Please Select--');
+                $('#brau-model option').text('--Please Select--');
+                $('#brau-year option').text('--Please Select--');
+
+            } else if ('brau-brand' == attribute) {
+                $('#brau-model').children('option:not(:first)').remove();
+                $('#brau-year').children('option:not(:first)').remove();
+                $('#brau-model option').text('--Please Select--');
+                $('#brau-year option').text('--Please Select--');
+
+            } else if ('brau-model' == attribute) {
+                $('#brau-year').children('option:not(:first)').remove();
+                $('#brau-year option').text('--Please Select--');
+            }
+
+
+            if('brau-type'==attribute) {
+              var brandType = $("select[name='brau-type'] option:selected").text();
+               $('#brau-type-text').attr("value", brandType);
+            }
+
+            if('brau-brand'==attribute) {
+               var brandName = ($("select[name='brau-brand'] option:selected").text() != "--Please Select--") ? $("select[name='brau-brand'] option:selected").text() : $("select[name='brau-type'] option:selected").text();
+               $('#brau-brand-text').attr("value", brandName);
+            }
+
+            if($('#'+ attribute).prop('selectedIndex') && 'brau-year' != attribute){
+
+                var param = 'ajax=1';
+                var value = $("select[name='" + attribute + "']").val();
+                var url = "<?php echo $block->getBaseUrl() . 'customsearch/brau/ajax/' ?>";
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {param:param,attribute:attribute,value:value,attribute_set_key:attribute_set_key},
+                    // showLoader: true,
+                    // cache: false
+                    success: function(response){
+
+                            if ('brau-type'==attribute) {
+                                if(!$.isEmptyObject(response)) {
+                                  var compare = attribute_set_id,
+                                    arr = compare.split(",");
+                                  $.each(response, function (key, value) {
+                                    if ($.inArray(value, attribute_keys)) {
+                                      var text = arr[value - 1].split(":");
+                                      $('#brau-brand').append($("<option></option>").attr("value", value).text(text[1]));
+                                    }
+                                  });
+                                } else {
+                                  $('#brau-brand option').text('All');
+                                  $('#brau-model option').text('All');
+                                  $('#brau-year option').text('All');
+                                }
+                            } else if('brau-brand'==attribute){
+
+                            if(!$.isEmptyObject(response)) {
+                              $.each(response,function(key, value){
+                                $('#brau-model').append($("<option></option>").attr("value",value).text(value));
+                              });
+                            } else {
+
+                              $('#brau-model option').text('All');
+                              $('#brau-year option').text('All');
+                            }
+
+                        }else if('brau-model'==attribute){
+                            if(!$.isEmptyObject(response)) {
+                              $.each(response, function (key, value) {
+                                $('#brau-year').append($("<option></option>").attr("value", value).text(value));
+                              });
+                            } else {
+                              $('#brau-year option').text('All');
+                            }
+                        }
+                    }
+                });
+                return false;
+            }
+        }
+    });
+});
+
+</script>

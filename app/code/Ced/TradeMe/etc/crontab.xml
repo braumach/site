@@ -1,0 +1,43 @@
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_TradeMe
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="ced_trademe_syncproducts" instance="Ced\TradeMe\Cron\SyncProducts" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="ced_trademe_fetchorders" instance="Ced\TradeMe\Cron\FetchOrders" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="ced_trademe_inventory_update" instance="Ced\TradeMe\Cron\UpdateInventory" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+        <job name="ced_trademe_auto_relist" instance="Ced\TradeMe\Cron\AutoRelist" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+        <job name="ced_trademe_product_upload" instance="Ced\TradeMe\Cron\UploadProducts" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+        <job name="ced_trademe_product_update" instance="Ced\TradeMe\Cron\UpdateProduct" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+        <job name="ced_trademe_status_sync" instance="Ced\TradeMe\Cron\StatusSync" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+    </group>
+</config>

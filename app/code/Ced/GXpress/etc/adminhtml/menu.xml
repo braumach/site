@@ -1,0 +1,174 @@
+<?xml version = "1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_GXpress
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+
+<config xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation = "urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id = "Ced_GXpress::GXpress"
+             title = "GXpress Integration"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "14"
+             resource = "Ced_GXpress::GXpress"
+        />
+        <add id = "Ced_GXpress::product"
+             title = "Products"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "1"
+             parent = "Ced_GXpress::GXpress"
+             resource = "Ced_GXpress::GXpress"
+        />
+        <add id = "Ced_GXpress::gxpress_profile"
+             title = "Profile Manager"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "1"
+             parent = "Ced_GXpress::product"
+             action = "gxpress/profile/index"
+             resource = "Ced_GXpress::GXpress"
+        />
+        <add id = "Ced_GXpress::gxpress_product"
+             title = "Product Manager"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "5"
+             parent = "Ced_GXpress::product"
+             action = "gxpress/product/index"
+             resource = "Ced_GXpress::GXpress"
+        />
+        <!--<add id = "Ced_GXpress::gxpress_bulk_scheduler"
+             title = "Bulk Scheduler"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "10"
+             parent = "Ced_GXpress::product"
+             action = "gxpress/jobScheduler/index"
+             resource = "Ced_GXpress::GXpress"
+        />-->
+
+
+        <add id = "Ced_GXpress::orders"
+             title = "Orders"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "3"
+             parent = "Ced_GXpress::GXpress"
+             resource = "Ced_GXpress::GXpress"
+        />
+
+        <add id = "Ced_GXpress::gxpress_order_listing"
+             title = "Manage Orders"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "1"
+             parent = "Ced_GXpress::orders"
+             action = "gxpress/order/index"
+             resource = "Ced_GXpress::GXpress"
+        />
+
+        <add id = "Ced_GXpress::configuration"
+             title = "GXpress Configuration"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "4"
+             parent = "Ced_GXpress::GXpress"
+             resource = "Ced_GXpress::GXpress"
+        />
+        <add id = "Ced_GXpress::account"
+             title = "Manage Accounts"
+             module = "Ced_GXpress"
+             sortOrder = "1"
+             parent = "Ced_GXpress::configuration"
+             action = "gxpress/account/index"
+             resource = "Ced_GXpress::GXpress"
+        />
+
+       <!-- <add id = "Ced_GXpress::accountconfig"
+             title = "Manage Account Config"
+             module = "Ced_GXpress"
+             sortOrder = "5"
+             parent = "Ced_GXpress::configuration"
+             action = "gxpress/accountconfig/index"
+             resource = "Ced_GXpress::GXpress"
+        />-->
+
+        <add id = "Ced_GXpress::developer"
+             title = "Developer"
+             module = "Ced_GXpress"
+             sortOrder = "20"
+             parent = "Ced_GXpress::GXpress"
+             resource = "Ced_GXpress::GXpress"
+        />
+
+        <add id = "Ced_GXpress::gxpress_cron"
+             title = "Cron Logs"
+             module = "Ced_GXpress"
+             sortOrder = "5"
+             parent = "Ced_GXpress::developer"
+             action = "gxpress/cron/index"
+             resource = "Ced_GXpress::GXpress"
+        />
+
+        <add id = "Ced_GXpress::logs"
+             title = "Activity Logs"
+             translate = "title"
+             module = "Ced_GXpress"
+             sortOrder = "40"
+             parent = "Ced_GXpress::developer"
+             action = "integrator/log/index"
+             resource = "Ced_Integrator::activity_log"
+        />
+        <!--<add id = "Ced_GXpress::gxpress_products_feeds"
+             title = "Product Feeds"
+             module = "Ced_GXpress"
+             sortOrder = "20"
+             parent = "Ced_GXpress::developer"
+             action = "gxpress/product/feeds"
+             resource = "Ced_GXpress::GXpress"
+        />-->
+
+        <add id = "Ced_GXpress::gxpress_configuration"
+             title = "Configuration"
+             module = "Ced_GXpress"
+             sortOrder = "10"
+             parent = "Ced_GXpress::configuration"
+             action = "adminhtml/system_config/edit/section/gxpress_config"
+             resource = "Ced_GXpress::GXpress"
+        />
+
+        <add id = "Ced_GXpress::extra"
+             title = "Extras"
+             module = "Ced_GXpress"
+             sortOrder = "10"
+             parent = "Ced_GXpress::GXpress"
+             resource = "Ced_GXpress::GXpress"
+        />
+        <add id = "Ced_GXpress::knowledge_base"
+             title = "Help And Support"
+             module = "Ced_GXpress"
+             sortOrder = "2"
+             parent = "Ced_GXpress::extra"
+             action = "gxpress/request/help"
+             resource = "Ced_GXpress::GXpress"
+        />
+
+    </menu>
+</config>

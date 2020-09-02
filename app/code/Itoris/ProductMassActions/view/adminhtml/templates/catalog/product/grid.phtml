@@ -1,0 +1,323 @@
+<?php
+/**
+ * ITORIS
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the ITORIS's Magento Extensions License Agreement
+ * which is available through the world-wide-web at this URL:
+ * http://www.itoris.com/magento-extensions-license.html
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to sales@itoris.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extensions to newer
+ * versions in the future. If you wish to customize the extension for your
+ * needs please refer to the license agreement or contact sales@itoris.com for more information.
+ *
+ * @category   ITORIS
+ * @package    ITORIS_M2_PRODUCT_MASS_ACTIONS
+ * @copyright  Copyright (c) 2016 ITORIS INC. (http://www.itoris.com)
+ * @license    http://www.itoris.com/magento-extensions-license.html  Commercial License
+ */
+if ($block->isEnabled()) {
+?>
+<script type="text/javascript">
+require([
+	'uiRegistry',
+	'mageUtils'
+], function (registry, utils) {
+    jQuery(document).ready(function(){
+        jQuery('script[type="text/x-magento-init"]').each(function(index, initScript){
+            if (initScript) {
+                try{
+                    //creating mass action items here, not from xml of the ui_component
+                    var obj = JSON.parse(initScript.innerHTML);
+                    var actions = obj['*']['Magento_Ui/js/core/app']['components']['product_listing']['children']['product_listing']['children']['listing_top']['children']['listing_massaction']['config']['actions'];
+                    
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Change Attribute Set")) ?>",
+                        type: "mass_attribute_set",
+                        url: "<?php echo $block->getUrl('productmassactions/product/massAttributeSet') ?>",
+                        confirm: {
+                            message: "<scri"+"pt>iProductMassActions.attachMassActionEventAttributeSet('mass_attribute_set')</scr"+"ipt>",
+                            title: "<?php echo $block->escapeHtml(__("Update Attribute Set in Bulk")) ?>"
+                        }
+                    };
+					
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Fast Delete")) ?>",
+                        type: "mass_fast_delete",
+                        url: "<?php echo $block->getUrl('productmassactions/product/massFastDelete') ?>",
+                        confirm: {
+                            message: "<?php echo $block->escapeHtml(__("Are you sure want to remove selected products?")) ?>",
+                            title: "<?php echo $block->escapeHtml(__("Fast Product Removal")) ?>"
+                        }
+                    };   
+					
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Mass Attribute")) ?>",
+                        type: "mass_attribute",
+                        url: "<?php echo $block->getUrl('productmassactions/product/massAttribute') ?>",
+                        confirm: {
+                            message: "<scri"+"pt>iProductMassActions.attachMassActionEventAttribute('mass_attribute')</scr"+"ipt>",
+                            title: "<?php echo $block->escapeHtml(__("Update Attribute in Bulk")) ?>"
+                        }
+                    };
+                    
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Custom Options")) ?>",
+                        type: "copy_custom_options",
+                        actions: [
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('replace_custom_options')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Replace Custom Options")) ?>"
+                                },
+                                type: "replace_custom_options",
+                                label: "<?php echo $block->escapeHtml(__("Replace")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massOptionsCopy/method/replace') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('append_custom_options')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Append Custom Options")) ?>"
+                                },
+                                type: "append_custom_options",
+                                label: "<?php echo $block->escapeHtml(__("Append")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massOptionsCopy/method/append') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<?php echo $block->escapeHtml(__("Are you sure want to remove custom option from selected products?")) ?>",
+                                    title: "<?php echo $block->escapeHtml(__("Remove Custom Options")) ?>"
+                                },
+                                type: "remove_custom_options",
+                                label: "<?php echo $block->escapeHtml(__("Remove")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massOptionsRemove/method/remove') ?>"
+                            }					
+                        ]
+                    };
+                    
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Related Products")) ?>",
+                        type: "copy_relations",
+                        actions: [
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('replace_relations')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Replace Relations")) ?>"
+                                },
+                                type: "replace_relations",
+                                label: "<?php echo $block->escapeHtml(__("Replace")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massRelationsCopy/method/replace') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('append_relations')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Append Relations")) ?>"
+                                },
+                                type: "append_relations",
+                                label: "<?php echo $block->escapeHtml(__("Append")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massRelationsCopy/method/append') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<?php echo $block->escapeHtml(__("Are you sure want to remove relations from selected products?")) ?>",
+                                    title: "<?php echo $block->escapeHtml(__("Remove Relations")) ?>"
+                                },
+                                type: "remove_relations",
+                                label: "<?php echo $block->escapeHtml(__("Remove")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massRelationsRemove/method/remove') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<?php echo $block->escapeHtml(__("Are you sure want to cross-relate selected products? All selected products will be related to each other.")) ?>",
+                                    title: "<?php echo $block->escapeHtml(__("Cross-Relate Selected")) ?>"
+                                },
+                                type: "cross_relations",
+                                label: "<?php echo $block->escapeHtml(__("Cross-Relate Selected")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massRelationsCross/method/cross') ?>"
+                            }
+                        ]
+                    };
+                    
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Upsells")) ?>",
+                        type: "copy_upsells",
+                        actions: [
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('replace_upsells')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Replace Upsells")) ?>"
+                                },
+                                type: "replace_upsells",
+                                label: "<?php echo $block->escapeHtml(__("Replace")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massUpsellsCopy/method/replace') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('append_upsells')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Append Upsells")) ?>"
+                                },
+                                type: "append_upsells",
+                                label: "<?php echo $block->escapeHtml(__("Append")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massUpsellsCopy/method/append') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<?php echo $block->escapeHtml(__("Are you sure want to remove upsells from selected products?")) ?>",
+                                    title: "<?php echo $block->escapeHtml(__("Remove Upsells")) ?>"
+                                },
+                                type: "remove_upsells",
+                                label: "<?php echo $block->escapeHtml(__("Remove")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massUpsellsRemove/method/remove') ?>"
+                            }
+                        ]
+                    };
+
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Cross-sells")) ?>",
+                        type: "copy_crosssells",
+                        actions: [
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('replace_crosssells')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Replace Cross-sells")) ?>"
+                                },
+                                type: "replace_crosssells",
+                                label: "<?php echo $block->escapeHtml(__("Replace")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massCrosssellsCopy/method/replace') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('append_crosssells')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Append Cross-sells")) ?>"
+                                },
+                                type: "append_crosssells",
+                                label: "<?php echo $block->escapeHtml(__("Append")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massCrosssellsCopy/method/append') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<?php echo $block->escapeHtml(__("Are you sure want to remove cross-sells from selected products?")) ?>",
+                                    title: "<?php echo $block->escapeHtml(__("Remove Cross-sells")) ?>"
+                                },
+                                type: "remove_crosssells",
+                                label: "<?php echo $block->escapeHtml(__("Remove")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massCrosssellsRemove/method/remove') ?>"
+                            }
+                        ]
+                    };
+
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Images")) ?>",
+                        type: "copy_images",
+                        actions: [
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('replace_images')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Replace Images")) ?>"
+                                },
+                                type: "replace_images",
+                                label: "<?php echo $block->escapeHtml(__("Replace")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massImagesCopy/method/replace') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEvent('append_images')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Append Images")) ?>"
+                                },
+                                type: "append_images",
+                                label: "<?php echo $block->escapeHtml(__("Append")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massImagesCopy/method/append') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<?php echo $block->escapeHtml(__("Are you sure want to remove images from selected products?")) ?>",
+                                    title: "<?php echo $block->escapeHtml(__("Remove Images")) ?>"
+                                },
+                                type: "remove_images",
+                                label: "<?php echo $block->escapeHtml(__("Remove")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massImagesRemove/method/remove') ?>"
+                            }
+                        ]
+                    };
+
+                    actions[actions.length] = {
+                        component: "uiComponent",
+                        label: "<?php echo $block->escapeHtml(__("Categories")) ?>",
+                        type: "copy_categories",
+                        actions: [
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEventCategory('replace_categories')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Replace Categories")) ?>"
+                                },
+                                type: "replace_categories",
+                                label: "<?php echo $block->escapeHtml(__("Replace")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massCategory/method/replace') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEventCategory('append_categories')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Append Categories")) ?>"
+                                },
+                                type: "append_categories",
+                                label: "<?php echo $block->escapeHtml(__("Append")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massCategory/method/append') ?>"
+                            },
+                            {
+                                confirm: {
+                                    message: "<scri"+"pt>iProductMassActions.attachMassActionEventCategory('remove_categories')</scr"+"ipt>",
+                                    title: "<?php echo $block->escapeHtml(__("Remove Categories")) ?>"
+                                },
+                                type: "remove_categories",
+                                label: "<?php echo $block->escapeHtml(__("Remove")) ?>",
+                                url: "<?php echo $block->getUrl('productmassactions/product/massCategory/method/remove') ?>"
+                            }
+                        ]
+                    };
+
+                    initScript.innerHTML = JSON.stringify(obj);
+                } catch(e){}
+            }
+        });
+    });
+
+	window.iProductMassActions.init(registry, utils, 1);
+	window.iProductMassActions.translations = <?php echo json_encode([
+		'replace_custom_options_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy custom options from:')),
+		'append_custom_options_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy custom options from:')),
+		'replace_relations_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy relations from:')),
+		'append_relations_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy relations from:')),
+		'replace_upsells_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy upsells from:')),
+		'append_upsells_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy upsells from:')),
+		'replace_crosssells_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy cross-sells from:')),
+		'append_crosssells_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy cross-sells from:')),
+		'replace_images_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy images from:')),
+		'append_images_msg' => $block->escapeHtml(__('Please enter the product Id you would like to copy images from:')),
+		'replace_categories_msg' => $block->escapeHtml(__('Please select categories you would like to assign the products to (multi-select):')),
+		'append_categories_msg' => $block->escapeHtml(__('Please select categories you would like to assign the products to (multi-select):')),
+		'remove_categories_msg' => $block->escapeHtml(__('Please select categories you would like to unassign from the products (multi-select):')),
+		'mass_attribute_msg' => $block->escapeHtml(__('Please select an attribute you would like to update:')),
+		'mass_attribute_set_msg' => $block->escapeHtml(__('Please select an attribute set you would like to apply:'))
+	]); ?>;
+	window.iProductMassActions.pickUpProductGridUrl = '<?php echo $this->getUrl('productmassactions/product/productGrid') ?>';
+	window.iProductMassActions.loadingImageUrl = '<?php echo $this->getViewFileUrl('Itoris_ProductMassActions::images/loading.gif') ?>';
+	window.iProductMassActions.categories = <?php echo json_encode($block->getCategories()); ?>;
+	window.iProductMassActions.attributeSets = <?php echo json_encode($block->getAttributeSets()); ?>;
+	window.iProductMassActions.attributes = <?php echo json_encode($block->getAttributes()); ?>;
+});
+</script>
+<?php } ?>

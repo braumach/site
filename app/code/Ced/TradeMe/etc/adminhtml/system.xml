@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_TradeMe
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license     http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="cedcommerce" translate="label" sortOrder="1">
+            <label>Cedcommerce</label>
+        </tab>
+
+        <!-- section start for Trade Me Configuration Tab in Cedcommerce section -->
+        <section id="trademe_config" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Trade Me Configuration</label>
+            <tab>cedcommerce</tab>
+            <resource>Ced_TradeMe::system_config</resource>
+
+            <group id="product_upload" translate="label" type="text" sortOrder="50"  showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>TradeMe Product Upload Setting</label>
+                <field id="url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Callback Url</label>
+                    <frontend_model>Ced\TradeMe\Block\Adminhtml\Config\Field\Url</frontend_model>
+                    <comment><![CDATA[Save this url in your App under Default Callback Url]]></comment>
+                </field>
+                <field id="price_type" translate="label comment" type="select" sortOrder="2"  showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>TradeMe Product Price</label>
+                    <source_model>Ced\TradeMe\Model\Source\Config\Price</source_model>
+                    <comment><![CDATA[Select to send different product price to <b>TradeMe</b>]]></comment>
+                </field>
+                <field id="fix_price" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Modify by Fix Price</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="price_type" separator=",">plus_fixed,min_fixed</field>
+                    </depends>
+                </field>
+                <field id="percentage_price" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0" >
+                    <label>Modify by Percenctage Price</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment><![CDATA[Numeric value Required for <b>Add/subtract % on Magento price</b> 5 for Example: Magento price +/- 5% of Magento price.<b>]]></comment>
+                    <depends>
+                        <field id="price_type" separator=",">plus_per,min_per</field>
+                    </depends>
+                </field>
+                <field id="different_price" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0" >
+                    <label>Map Price Attribute</label>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[<b>Attribute Code Required in case of <b>Custom Fixed Price</b>]]></comment>
+                    <depends>
+                        <field id="price_type">differ</field>
+                    </depends>
+                </field>
+
+                <field id="trademe_qty" type="select" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Trademe Product Quantity</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[<b>Select "Yes" for different quantity attribute</b> if Yes then please map attribute in profile's optional attribute mapping section]]></comment>
+
+                </field>
+
+                <field id="payment_methods" type="multiselect" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Select Payment Methods</label>
+                    <source_model>Ced\TradeMe\Model\Source\PaymentMethod</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="shipping_type" type="multiselect" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Select Shipping Options</label>
+                    <source_model>Ced\TradeMe\Model\Source\ShippingType</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="shipping_price" type="text" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Shipping Price(for Custom Type Only)</label>
+                    <comment><![CDATA[Fill for Custom Shipping Type Only]]></comment>
+                </field>
+                <field id="shipping_method" type="text" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Shipping Method(for Custom Type Only)</label>
+                    <comment><![CDATA[Fill for Custom Shipping Type Only]]></comment>
+                </field>
+                <field id="chunk_size" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Chunk Size (Product Upload)</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="withdraw_type" translate="label comment" type="select" sortOrder="10"  showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Select Withdraw Type</label>
+                    <source_model>Ced\TradeMe\Model\Source\WithdrawType</source_model>
+                    <comment><![CDATA[Select Withdraw Type For Withdraw Auction.]]></comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="withdraw_reason" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Withdraw Reason</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="withdraw_type" >2</field>
+                    </depends>
+                </field>
+                <field id="withdraw_saleprice" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Withdraw SalePrice</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="withdraw_type">1</field>
+                    </depends>
+                </field>
+
+                <field id="primary_account" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Primary Account</label>
+                    <source_model>Ced\TradeMe\Model\Source\Accounts</source_model>
+                    <tooltip>Selected Account will used for profile creation. If you need to create profile for another account please select that particular account or leave it black. If this field will blank then account will be ask at the time of profile creation.</tooltip>
+                </field>
+
+            </group>
+
+            <group id="order" translate="label" type="text" sortOrder="60"  showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Order Settings</label>
+
+                <field id="order_filter" translate="label" type="select" sortOrder="1"  showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Select Order Filter</label>
+                    <source_model>Ced\TradeMe\Model\Source\OrderFilter</source_model>
+                    <validate>required-entry</validate>
+                    <comment><![CDATA[Select Order Filter to get Trademe Orders.]]></comment>
+                </field>
+                <field id="order_out_of_stock" translate="label comment" type="select" sortOrder="70"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Fetch Order For Out Of Stock Product</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip>It will skip the validation check of quantity while placing Trade Me order in Magento.</tooltip>
+                </field>
+                <field id="customer_group" translate="label" type="select" sortOrder="77" showInDefault="1">
+                    <label>Customer Group</label>
+                    <source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="order_id_prefix" translate="label" type="text" sortOrder="80" showInDefault="1">
+                    <label>Trade Me Order Id Prefix</label>
+                    <comment>Prefix for Trade Me Order Increment ID</comment>
+                </field>
+
+                <field id="ship_method" translate="label comment" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Shipping Method of Trade Me Orders</label>
+                    <validate>required-entry</validate>
+                    <source_model>Ced\TradeMe\Model\Config\ShippingMethods</source_model>
+                </field>
+                <field id="pay_method" translate="label comment" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Payment Method of Trade Me Orders</label>
+                    <validate>required-entry</validate>
+                    <source_model>Ced\TradeMe\Model\Config\PaymentMethods</source_model>
+                </field>
+                <field id="order_notify_email" translate="label" type="text" sortOrder="50" showInDefault="1">
+                    <label>Order Notification Email</label>
+                    <validate>required-entry</validate>
+                </field>
+
+
+            </group>
+
+            <group id="trademe_cron" translate="label" type="text" sortOrder="80" showInDefault="1">
+                <label>TradeMe Cron Settings</label>
+                <field id="order_cron" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Order Cron</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+
+                <field id="sync_cron" translate="label" type="select" sortOrder="22" showInDefault="1">
+                    <label>Product Syncing Cron</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="inventory_cron" translate="label" type="select" sortOrder="22" showInDefault="1">
+                    <label>Inventory And Price Syncing Cron</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="relist_cron" translate="label" type="select" sortOrder="22" showInDefault="1">
+                    <label>Automatic Relist Ended Listing</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="upload_cron" translate="label" type="select" sortOrder="22" showInDefault="1">
+                    <label>Upload Products Cron</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+
+
+            </group>
+
+
+        </section>
+
+        <!-- section start for Shipping Methods Tab in Sales Tab -->
+        <section id="carriers">
+            <group id="shipbytrademe" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Trade Me Payment Method(Default)</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Title</label>
+                </field>
+            </group>
+        </section>
+        <!-- section end for Shipping Methods Tab in Sales Tab -->
+
+        <!-- section start for Payment Methods Tab in Sales Tab -->
+        <section id="payment">
+            <group id="paybytrademe" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Trade Me</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="order_status" translate="label" type="select" sortOrder="3" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>New order status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+
+            </group>
+        </section>
+        <!-- section end PaymentPoliciesment Methods Tab in Sales Tab -->
+    </system>
+</config>

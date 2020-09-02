@@ -1,0 +1,318 @@
+<?php
+
+	$collection = $block->getRegistry();
+	$main_product = reset($collection);
+
+	$currentStoreId = $block->getCurrentStoreId();
+
+?>
+
+<div class="search-title-wrapper">
+    <div class="search-container">
+        <h1 class="search-page-title">
+            <span class="base">
+            	Wiper results for <br>
+            	<?php if(isset($_GET['brau-brand']) && 0==$_GET['brau-brand']) : ?>
+            		<span><?php echo $_GET['brau-type-text'] ?></span>
+            	<?php else : ?>
+            		<span><?php echo $main_product['brand_name'] . ' ' . $main_product['model'] . ' ' . $main_product['year']; ?></span>
+            	<?php endif;?>
+            </span>
+        </h1>
+    </div>
+</div>
+<div class="columns container layout_1">
+	<div class="column main layout_2">
+		<div class="mobile-nav">
+			<a id="previous" href=#>&nbsp;</a>
+			<a id="next" href=#>&nbsp;</a>
+		</div>
+		<div class="product-container">
+		<?php foreach($collection as $data) : ?>
+			<div class="top-wrapper">
+				<div class="product-content">
+					<div class="product media">
+						<div class="gallery-placeholder">
+							<div class="gallery-item">
+								<div class="gallery-wrap">
+									<div class="gallery_stage">
+										<div class="gallery_stage_shaft">
+											<div class="gallery_stage_frame">
+												<?php
+													$data_image = isset($data['image']) ? $data['image'] : 'N/A';
+												?>
+												<img src="<?php echo $block->getMediaUrl() . $data_image ?>" width="400" title="<?php echo $data['name']; ?>"/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="product-info-main">
+						<div class="product-info-price">
+							<div class="product-title-wrapper product">
+								<div class="container">
+									<h1 class="page-title">
+										<span class="base"><?php echo $data['name']; ?></span>
+									</h1>
+								</div>
+							</div>
+
+							<div class="price-box price-final_price">
+								<span class="price-container price-final_price tax weee">
+						        	<span id="product-price-13256" class="price-wrapper">
+						        		<span class="price">$<?php echo round($data['price'],2) ?></span>
+						        	</span>
+							    </span>
+							</div>
+
+							<div class="product attribute sku">
+							    <strong class="type">SKU</strong>    
+						    	<div class="value"><?php echo $data['sku']; ?></div>
+							</div>
+						</div>
+						<?php 
+							$length = array(
+								"driver_side" => isset($data['driver_length']) ? $data['driver_length'] : 'N/A',
+								"passenger_side" => isset($data['passenger_length']) ? $data['passenger_length'] : 'N/A' ,
+								"rear_side" => isset($data['rear_length']) ? $data['rear_length'] : 'N/A'
+							);
+						?>
+
+						<div class="dimensions-wrap">
+							<div class="top-wrap">
+								<?php 
+									$data_length = isset($data['length']) ? $data['length'] : 'N/A';
+									$data_width = isset($data['width']) ? $data['width'] : 'N/A';
+									$data_height = isset($data['height']) ? $data['height'] : 'N/A';
+								?>
+								<span class="dimension"><strong>dimension :</strong> <?php echo $data_length . ' X ' . $data_width . ' X ' . $data_height ?></span>
+							</div>
+							<div class="bottom-wrap">
+								<ol>
+								<?php foreach($length as $key => $value) : ?>
+									<?php if($value) :?>
+									<li class="inner-wrap">
+										<div class="column">
+											<span class="attr"><?php echo str_replace('_',' ',$key); ?></span>
+											<span class="val"><?php echo $value; ?></span>
+										</div>
+									</li>
+								<?php endif; ?>
+								<?php endforeach; ?>
+								</ol>
+							</div>
+						</div>
+
+						<form action="<?php echo $block->addToCartUrl($data['entity_id']); ?>" method="post">
+							<input type="hidden" name="product" value="<?php echo $data['entity_id']; ?>">
+							<input name="form_key" type="hidden" value="<?php echo $block->getFormKey(); ?>">
+							<button type="submit" title="Add to Cart">
+								<span>
+									ADD TO CART
+								</span>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		<?php endforeach; ?>
+		</div>
+	</div>
+	<div class="gallery-nav-wrap">
+		<div class="gallery-nav">
+			<div class="gallery-nav-shaft">
+				<div class="gallery-nav-frame">
+					<div class="gallery-border"></div>
+					<?php foreach($collection as $data) :?>
+						<div class="gallery-thumb">
+							<?php
+								$data_image = isset($data['image']) ? $data['image'] : 'N/A';
+							?>
+							<img src="<?php echo $block->getMediaUrl() . $data_image ?>" width="150" title="<?php echo $data['name']; ?>"/>
+						</div>
+					<?php endforeach;?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h2 class="related-products-title"><span>AVAILABLE PRODUCTS</span></h2>
+	<div class="related-products">
+		<div class="product-items">
+			<div class="product-data">
+				<div class="product-list">
+					<ol>
+						<?php foreach($collection as $data) : ?>
+							<?php 
+								$length = array(
+									"driver_side" => isset($data['driver_length']) ? $data['driver_length'] : 'N/A',
+									"passenger_side" => isset($data['passenger_length']) ? $data['passenger_length'] : 'N/A',
+									"rear_side" => isset($data['rear_length']) ? $data['rear_length'] : 'N/A'
+								);
+							?>
+							<li>
+								<div class="dimensions-wrap">
+									<div class="top-wrap">
+										<?php 
+											$data_length = isset($data['length']) ? $data['length'] : 'N/A';
+											$data_width = isset($data['width']) ? $data['width'] : 'N/A';
+											$data_height = isset($data['height']) ? $data['height'] : 'N/A';
+										?>
+										<span class="dimension">dimension: <?php echo $data_length . ' X ' . $data_width . ' X ' . $data_height ?></span>
+									</div>
+									<div class="bottom-wrap">
+										<?php foreach($length as $key => $value) : ?>
+											<?php if($value) :?>
+											<div class="inner-wrap">
+												<div class="column">
+													<span class="attr"><?php echo str_replace('_',' ',$key); ?></span>
+													<span class="val"><?php echo $value; ?></span>
+												</div>
+											</div>
+										<?php endif; ?>
+										<?php endforeach; ?>
+									</div>
+								</div>
+								<a href="<?php echo $block->getBaseUrl() . $data['url_key'] . '.html' ?>">
+									<?php
+										$data_image = isset($data['image']) ? $data['image'] : 'N/A';
+									?>
+									<img src="<?php echo $block->getMediaUrl() . $data_image  ?>" title = "<?php echo $data['name']; ?>" />
+								</a>
+
+								<div class="related-product-info">
+									<span class="price"><?php echo '$' . round($data['price'],2) ?></span>
+									<a href="<?php echo $block->getBaseUrl() . $data['url_key'] . '.html' ?>" class="item-name"><?php echo $data['name']; ?></a>
+									<a href="<?php echo $block->getBaseUrl() . $data['url_key'] . '.html' ?>" class="learn-more">Learn More</a><br>
+
+									<form action="<?php echo $block->addToCartUrl($data['entity_id']); ?>" method="post">
+										<input type="hidden" name="product" value="<?php echo $data['entity_id']; ?>">
+										<input name="form_key" type="hidden" value="<?php echo $block->getFormKey(); ?>">
+										<button type="submit" title="Add to Cart">
+											<span>
+												ADD TO CART
+											</span>
+										</button>
+									</form>
+								</div>
+							</li>
+						<?php endforeach; ?>	
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="break"></div>
+
+	<div class="bottom-container">
+		<?php include ($block->getTemplateFile('Brausearch_Customsearch::html/customsearch.phtml')) ?>
+		<div class="item-wrap col-2">
+			<h2>General Information</h2>
+			<div class="inner-wrap">
+				<div class="inner-wrap-top">
+
+					<?php
+						if(0==$_GET['brau-brand']){
+							$brandType = "TYPE: ";
+							$brandName = $_GET['brau-type-text'];
+						} else {
+							$brandType = "BRAND: ";
+							$brandName = $main_product['brand_name'];
+						}
+
+						if(0==$_GET['brau-model'])
+							$brandModel = "N/A";
+						else
+							$brandModel = $main_product['model'];
+
+						if(0==$_GET['brau-year'])
+							$brandYear = "N/A";
+						else
+							$brandYear = $main_product['year'];
+					?>
+
+					<div class="inner-left">
+						<span><?php echo $brandType; ?></span>
+						<span>MODEL: </span>
+						<span>YEAR: </span>
+					</div>
+					<div class="inner-right">
+						<span><?php echo $brandName; ?></span>
+						<span><?php echo $brandModel; ?></span>
+						<span><?php echo $brandYear; ?></span>
+					</div>
+				</div>
+
+				<div class="inner-wrap-middle">
+
+					<?php $length = []; ?>
+
+					<?php foreach($collection as $data) : ?>
+						<?php
+							if($driver_length = isset($data['driver_length']) ? $data['driver_length'] : 'N/A')
+								$length = array_merge($length, array('driver_side' => $driver_length));
+							elseif($passenger_length = isset($data['passenger_length']) ? $data['passenger_length'] : 'N/A' )
+								$length = array_merge($length, array('passenger_side' => $passenger_length));
+							elseif($rear_legnth = isset($data['rear_length']) ? $data['rear_length'] : 'N/A')
+								$length = array_merge($length, array('rear_side' => $rear_legnth));
+						?>
+					<?php endforeach;?>
+
+					<div class="inner-left">
+						<?php foreach($length as $key => $value) : ?>
+							<span class="attr"><?php echo str_replace('_',' ',$key); ?>: </span>
+						<?php endforeach; ?>
+					</div>
+
+					<div class="inner-right">
+						<?php foreach ($length as $key => $value) : ?>
+							<span class="val"><?php echo $value; ?></span>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				<div class="inner-wrap-bottom">
+					<div class="inner-left">
+						<span class="attr">dimensions:</span>
+					</div>
+					<div class="inner-right">
+						<?php foreach($collection as $data) : ?>
+							<?php 
+								$data_length = isset($data['length']) ? $data['length'] : 'N/A';
+								$data_width = isset($data['width']) ? $data['width'] : 'N/A';
+								$data_height = isset($data['height']) ? $data['height'] : 'N/A';
+							?>
+							<span class="val"><?php echo $data_length . ' X ' . $data_width . ' X ' . $data_height ?></span>
+						<?php break; endforeach; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item-wrap col-3">
+			<div class="inner-wrap">
+				<h2>Why choose us?</h2>
+				<ol>
+					<li>
+						<span class="text">Braumach Long Life Guarantee</span>
+					</li>
+					<li>
+						<span class="text">Fast Dispatch Fast Delivery</span>
+					</li>
+					<li>
+						<span class="text">Simple easy installation</span>
+					</li>	
+					<li>
+						<span class="text">12 Month Replacement Warranty</span>
+					</li>
+					<li>
+						<span class="text">Correct fit or Money back</span>
+					</li>
+					<li>
+						<span class="text">Australian Owned Melb Dispatch</span>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>

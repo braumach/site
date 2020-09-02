@@ -1,0 +1,63 @@
+"Sorry, the product with ID %s has no cross-sell products","Sorry, the product with ID %s has no cross-sell products"
+"Sorry, the product with ID %s has no images","Sorry, the product with ID %s has no images"
+"Sorry, the product with ID %s has no options","Sorry, the product with ID %s has no options"
+"Sorry, the product with ID %s has no related products","Sorry, the product with ID %s has no related products"
+"Sorry, the product with ID %s has no upsell products","Sorry, the product with ID %s has no upsell products"
+%s products have been changed,%s products have been changed
+An error occurred while clearing the image cache.,An error occurred while clearing the image cache.
+Append Categories,Append Categories
+Append Cross-sells,Append Cross-sells
+Append Custom Options,Append Custom Options
+Append Images,Append Images
+Append Relations,Append Relations
+Append Upsells,Append Upsells
+Append,Append
+Are you sure want to cross-relate selected products? All selected products will be related to each other., Are you sure want to cross-relate selected products? All selected products will be related to each other.
+Are you sure want to remove cross-sells from selected products?,Are you sure want to remove cross-sells from selected products?
+Are you sure want to remove custom option from selected products?,Are you sure want to remove custom option from selected products?
+Are you sure want to remove images from selected products?,Are you sure want to remove images from selected products?
+Are you sure want to remove relations from selected products?,Are you sure want to remove relations from selected products?
+Are you sure want to remove upsells from selected products?,Are you sure want to remove upsells from selected products?
+Attribute Set,Attribute Set
+Attribute not found,Attribute not found
+Categories,Categories
+Change Attribute Set,Change Attribute Set
+Cross-Relate Selected,Cross-Relate Selected
+Cross-sells,Cross-sells
+Custom Options,Custom Options
+ID,ID
+Images,Images
+Mass Attribute,Mass Attribute
+Please enter the product Id you would like to copy cross-sells from:,Please enter the product Id you would like to copy cross-sells from:
+Please enter the product Id you would like to copy custom options from:,Please enter the product Id you would like to copy custom options from:
+Please enter the product Id you would like to copy images from:,Please enter the product Id you would like to copy images from:
+Please enter the product Id you would like to copy relations from:,Please enter the product Id you would like to copy relations from:
+Please enter the product Id you would like to copy upsells from:,Please enter the product Id you would like to copy upsells from:
+Please select a category,Please select a category
+Please select an attribute you would like to update:,Please select an attribute you would like to update:
+Please select an attribute set you would like to apply:,Please select an attribute set you would like to apply:
+Please select at least 2 products,Please select at least 2 products
+Please select categories you would like to assign the products to (multi-select):,Please select categories you would like to assign the products to (multi-select):
+Please select categories you would like to unassign from the products (multi-select):,Please select categories you would like to unassign from the products (multi-select):
+Please select product ids,Please select product ids
+Please specify the product ID to copy from,Please specify the product ID to copy from
+Price,Price
+Product Name,Product Name
+Related Products,Related Products
+Remove Categories,Remove Categories
+Remove Custom Options,Remove Custom Options
+Remove,Remove
+Replace Categories,Replace Categories
+Replace Cross-sells,Replace Cross-sells
+Replace Custom Options,Replace Custom Options
+Replace Images,Replace Images
+Replace Relations,Replace Relations
+Replace Upsells,Replace Upsells
+Replace,Replace
+SKU,SKU
+Select,Select
+Type,Type
+Update Attribute in Bulk,Update Attribute in Bulk
+Update Attribute Set in Bulk, Update Attribute Set in Bulk
+Upsells,Upsells
+select,select

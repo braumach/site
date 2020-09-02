@@ -1,0 +1,25 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+	<head>
+		<title>Wiper Results</title>
+		<css src="Brausearch_Customsearch::css/brausearch.css"/>
+		<script src="Brausearch_Customsearch::js/brausearch.js"/>
+		<!-- <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/> -->
+		<!-- <script src="path/file.js" defer="defer"/> -->
+		<!-- <link src="http://url.com" src_type="url"/> -->
+		<!-- <remove src="path/remove/file.css"/> -->
+    </head> 
+
+    <body>
+
+		<referenceBlock name="page.main.title">
+			<action method="setPageTitle">
+				<argument translate="true" name="title" xsi:type="string">Wiper results for</argument>
+			</action>
+		</referenceBlock>
+
+        <referenceContainer name="content">
+            <block class="Brausearch\Customsearch\Block\Brau\Search" name="customsearch" template="Brausearch_Customsearch::customsearch_search.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

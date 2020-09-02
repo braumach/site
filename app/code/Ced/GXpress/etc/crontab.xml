@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_GXpress
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="ced_gxpress_order" instance="Ced\GXpress\Cron\FetchOrders" method="execute">
+            <schedule>*/20 * * * *</schedule>
+        </job>
+        <job name="ced_gxpress_ship" instance="Ced\GXpress\Cron\Shipment" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <!--<job name="ced_gxpress_invprice" instance="Ced\GXpress\Cron\InventoryPriceSync" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="ced_gxpress_inventory_update" instance="Ced\GXpress\Cron\UpdateInventory" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>-->
+        <!--<job name="ced_gxpress_shipment_cron" instance="Ced\GXpress\Helper\ShipmentHelper" method="execute">
+            <schedule>0 */6 * * *</schedule>
+        </job>-->
+    </group>
+</config>
