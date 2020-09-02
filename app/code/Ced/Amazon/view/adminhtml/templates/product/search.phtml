@@ -1,0 +1,32 @@
+<button type="button" id="openModel" class="btn btn-primary">Open Model</button>
+<div id="myModel">
+    <h1>Title</h1>
+    <div>Content.....</div>
+</div>
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function($,modal) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: 'popup mpdal title',
+                buttons: [{
+                    text: $.mage.__('Continue'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+            var popup = modal(options, $('#myModel'));
+            $("#openModel").on("click",function(){
+                $('#myModel').modal('openModal');
+            });
+        }
+    );
+</script>

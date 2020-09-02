@@ -1,0 +1,69 @@
+@mpcatch-icons-admin__font-name-path: '@{baseDir}Ced_MPCatch/fonts/mpcatch';
+@mpcatch-icons-admin__font-name : 'mpcatch';
+.lib-font-face(
+  @family-name:@mpcatch-icons-admin__font-name,
+  @font-path: @mpcatch-icons-admin__font-name-path,
+  @font-weight: normal,
+  @font-style: normal
+);
+.admin__menu .item-mpcatch.parent.level-0 > a:before {
+  font-family: @mpcatch-icons-admin__font-name;
+  content: "\e960";
+  display: block;
+  font-family: "mpcatch";
+  font-size: 2rem;
+  height: 3rem;
+}
+
+.cedcommerce.actions-li {
+  list-style: none;
+  display: inline;
+
+}
+
+.cedcommerce.actions {
+  font-size: 0;
+}
+
+.cedcommerce.actions.view:before {
+  display: inline-block;
+  content: url('@{baseDir}Ced_MPCatch/images/actions/view.svg');
+  height:16px;
+}
+
+.cedcommerce.actions.delete:before {
+  display: inline-block;
+  content: url('@{baseDir}Ced_MPCatch/images/actions/delete.svg');
+  height:16px;
+}
+
+.cedcommerce.actions.download:before {
+  display: inline-block;
+  content: url('@{baseDir}Ced_MPCatch/images/actions/download.svg');
+  height:16px;
+}
+
+.cedcommerce.actions.edit:before {
+  display: inline-block;
+  content: url('@{baseDir}Ced_MPCatch/images/actions/edit.svg');
+  height:16px;
+}
+
+.cedcommerce.actions.sync:before {
+  display: inline-block;
+  content: url('@{baseDir}Ced_MPCatch/images/actions/sync.svg');
+  height:16px;
+}
+
+.cedcommerce.actions.upload:before {
+  display: inline-block;
+  content: url('@{baseDir}Ced_MPCatch/images/actions/upload.svg');
+  height:16px;
+}
+
+.cedcommerce.actions.validate:before {
+  display: inline-block;
+  content: url('@{baseDir}Ced_MPCatch/images/actions/validate-circle.svg');
+  height:16px;
+}
+

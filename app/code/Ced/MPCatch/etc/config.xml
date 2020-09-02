@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_MPCatch
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<mpcatch_config>
+			<mpcatch_setting>
+				<version>1.0</version>
+			</mpcatch_setting>
+			<mpcatch_product>
+				<inventory_settings>
+					<fullfillment_latency>0</fullfillment_latency>
+					<advanced_threshold_status>0</advanced_threshold_status>
+				</inventory_settings>
+			</mpcatch_product>
+			<mpcatch_order>
+				<order_id_prefix>CATCH-</order_id_prefix>
+			</mpcatch_order>
+		</mpcatch_config>
+		<carriers>
+			<shipbympcatch>
+				<active>1</active>
+				<sallowspecific>0</sallowspecific>
+				<name>Catch Shipping Method(Default)</name>
+				<title>Catch Shipping Method</title>
+				<model>Ced\MPCatch\Model\Carrier\MPCatch</model>
+			</shipbympcatch>
+		</carriers> 
+		<payment>
+			<paybympcatch>
+				<active>1</active>
+				<model>Ced\MPCatch\Model\Payment\MPCatch</model>
+				<order_status>Processing</order_status>
+				<title>Catch Payment Method(Default)</title>
+				<payment_action>sale</payment_action>
+				<allowspecific>0</allowspecific>
+			</paybympcatch>
+    </payment>
+  </default> 
+</config>

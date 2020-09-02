@@ -1,0 +1,17 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div if="$col.isSingle($row()._rowIndex)" style="min-width: 70px;">
+    <a class="action-menu-item"
+        repeat="foreach: $col.getVisibleActions($row()._rowIndex), item: '$action'"
+        click="$col.getActionHandler($action())"
+        text="$action().label"
+        attr="href: $action().href, 'class': $action().class,id:$action().id, 'title':$action().label"/>
+    <div data-bind="scope: requestChild('dropdown')">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+</div>

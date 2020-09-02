@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_shipment_track_save_after">
+        <observer name="mpcatch_shipment_tracking_info" instance="Ced\MPCatch\Observer\Shipment" />
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="mpcatch_product_save_after" instance="Ced\MPCatch\Observer\Save" />
+    </event>
+    <event name="sales_order_creditmemo_refund">
+        <observer name="mpcatch_sales_order_creditmemo_refund" instance="Ced\MPCatch\Observer\Refund" />
+    </event>
+</config>

@@ -1,0 +1,23 @@
+<div class="admin__data-grid-wrap" data-role="grid-wrapper">
+    <table class="data-grid" data-role="grid">
+        <thead>
+        <tr>
+            <!-- ko foreach: { data: Object.values(headings()), as: 'label' } -->
+            <th class="data-grid-th">
+                <span class="data-grid-cell-content" data-bind="text: label"></span>
+            </th>
+            <!-- /ko -->
+        </tr>
+
+        </thead>
+        <tbody>
+           <!-- ko foreach: { data: additionalData[$row().entity_id], as: 'product' } -->
+           <tr class="data-row">
+                <!-- ko foreach: { data: Object.keys($parent.headings()), as: 'attribute' } -->
+                <td template ="$parentContext.$parent.getColumnTemplate(attribute)"></td>
+                <!-- /ko -->
+            </tr>
+            <!-- /ko -->
+        </tbody>
+    </table>
+</div>
