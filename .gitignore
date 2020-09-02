@@ -16,6 +16,10 @@
 !app/etc/config.php
 /dev
 /update/
+# 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# «Invalid template file: 'vendor/magento/module-theme/view/frontend/templates/page/js/require_js.phtml'» in Windows:
+# https://github.com/braumach/server/issues/6
+!/vendor/magento/framework/View/Element/Template/File/Validator.php
 /vendor/codeception
 /vendor/magento/framework/Test
 /vendor/magento/magento2-functional-testing-framework
