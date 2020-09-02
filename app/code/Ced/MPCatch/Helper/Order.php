@@ -1007,6 +1007,10 @@ class Order extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function notificationSuccess($count)
     {
+    	# 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+		# "Prevent the `Ced_MPCatch` module from spamming in backend notificatons
+		# («You have received `…` new orders form MPCatch»)": https://github.com/braumach/site/issues/3
+    	return;
         $model = $this->inbox;
         $date = date("Y-m-d H:i:s");
         $model->setData('severity', 4);
@@ -1103,6 +1107,9 @@ class Order extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function notificationFailed($message)
     {
+    	# 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+		# "Prevent the `Ced_MPCatch` module from spamming in backend notificatons": https://github.com/braumach/site/issues/3
+    	return;
         $date = date("Y-m-d H:i:s");
         $model = $this->inbox;
         $model->setData('severity', 1);
