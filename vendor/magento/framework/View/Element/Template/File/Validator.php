@@ -138,7 +138,7 @@ class Validator
         $realPath = $this->fileDriver->getRealPath($path);
         # 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 		# «Invalid template file: 'vendor/magento/module-theme/view/frontend/templates/page/js/require_js.phtml'» in Windows:
-		# https://github.com/braumach/server/issues/6
+		# https://github.com/braumach/site/issues/2
 		$isWin = 'WIN' === strtoupper(substr(PHP_OS, 0, 3)); /** @var bool $isWin */
 		foreach ($directories as $directory) {
 			if (0 === strpos($realPath, !$isWin ? $directory : str_replace('/', DIRECTORY_SEPARATOR, $directory))) {
