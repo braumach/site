@@ -1,0 +1,215 @@
+<?php
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+//$catId = 41;  //Parent Category ID
+//$subCategory = $objectManager->create('Magento\Catalog\Model\Category')->load($catId);
+//$subCats = $subCategory->getChildrenCategories();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+//$eavConfig = $objectManager->get('\Magento\Eav\Model\Config');
+//$attribute = $eavConfig->getAttribute('catalog_product', 'make');
+//$options = $attribute->getSource()->getAllOptions();
+
+$catId = 3;  //Parent Category ID
+    $subCategory = $objectManager->create('Magento\Catalog\Model\CategoryFactory')->create()->load($catId);
+    $subCats = $subCategory->getChildrenCategories();
+ 
+    //$_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+$urlInterface = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\UrlInterface');
+$base = $urlInterface->getBaseUrl();
+$garage_getmake = $base."gxpress/index/garage";
+
+
+?>
+<div id="brau-search">
+    <form autocomplete="off" action="<?php echo $storeManager->getStore()->getBaseUrl();?>catalogsearch/result/index/" method="GET" id="form-brausearch">
+        <input type="hidden" name="q" id="make-hidden" class="make-hidden">
+        <span>FIND YOUR<br><strong>WIPER BLADES</strong></span>  
+        <select required="" name="make" class="brau-brand option-text" id="brau-brand">   
+            <option value="no_selection">-- Please Select Model--</option>   
+            <?php $i=1; foreach ($subCats as $subcat) {
+                ?> 
+            <option value="<?php echo $subcat->getId(); ?>"><?php echo $subcat->getName(); ?></option>
+                <?php } ?>
+        </select> 
+        <label>MAKE</label>  
+        <select required="" name="model" class="brau-model option-text" id="brau-model"> 
+            <option value="no_selection">--Please Select Model--</option>
+        </select> 
+        <label>MODEL</label> 
+        <select required="" name="year" class="brau-year option-text" id="brau-year"> 
+            <option value="no_selection">--Please Select Year--</option>
+        </select> 
+        <label>YEAR</label> 
+        <select required="" name="series" class="brau-series option-text" id="brau-series"> 
+            <option value="no_selection">--Please Select Series--</option>
+        </select> 
+        <label>SERIES</label>
+         <select required="" name="category" class="brau-series option-text" id="brau-cat"> 
+            <option value="wiper">Wipers</option>
+            <option value="brakes">Brakes</option>
+            <option value="lights">Lights</option>
+        </select> 
+        <label>Category</label>
+        <br>
+        <button title="button" type="button" id="brau-submit">SEARCH</button> 
+        <a href="#">CAN'T FIND YOUR CAR LISTED?</a>
+    </form>
+</div>
+
+<script>
+
+require(['jquery', 'jquery/ui'], function($){
+
+    
+
+    $("#brau-submit").click(function () {
+        
+        var categorySearch =$('option:selected', $("#brau-cat")).val();
+
+        if(!categorySearch)
+        {
+            categorySearch = 'wiper';
+        }
+        var make =$('option:selected', $("#brau-brand"));
+        var selectedMake = make.val();
+        var selectedMaketext = make.text();
+
+        var selectedModel = $('option:selected', $("#brau-model")).val();
+        var selectedYear = $('option:selected', $("#brau-year")).val();
+        var selectedSeries = $('option:selected', $("#brau-series")).val();
+
+        var jsonPost = {
+                          'submit_make': selectedMake,
+                          'submit_model': selectedModel,
+                          'submit_year': selectedYear,
+                          'submit_series': selectedSeries,
+                          'submit_category': categorySearch
+                       };
+
+        window.location.href = 'http://demo2.braumach.com.au/bkup/catalogsearch/result?q='+categorySearch+
+                               '&cat='+selectedMake+
+                               '&model='+selectedModel+
+                               '&year='+selectedYear+
+                               '&sub_model='+selectedSeries;
+
+        /*$.ajax({url: "<?php echo $garage_getmake; ?>",
+                    data:jsonPost,
+                    beforeSend: function(){
+                    },
+                    success: function(result) {
+                        var elem = $("#brau-model");
+                        var json = JSON.parse(result);
+                        var html;
+                        var unique = [];
+                        //console.log(html);
+                       for (var key in json) {
+                           if (json.hasOwnProperty(key)) {
+                                html += '<option value='+json[key].model+'>'+json[key].model+'</option>';
+                                unique[key] = json[key].model;
+                                console.log(unique.key);
+
+                           }
+                        }
+                        elem.html(html);
+
+                    }
+                });*/      
+    });
+
+// get model for make which is selected ...
+
+            $("#brau-brand").change(function () {
+
+            var elem = $("#brau-brand");
+            var selectedMake = $('option:selected', elem).val();
+            if(selectedMake == 'no_selection')
+            {
+                alert("Please select Make");
+            }else{
+
+                    
+                    $.ajax({url: "<?php echo $garage_getmake; ?>",
+                    data:{'make':selectedMake},
+                    beforeSend: function(){
+                    },
+                    success: function(result) {
+                        var elem = $("#brau-model");
+                        var json = JSON.parse(result);
+                        var html;
+                        var unique = [];
+                        //console.log(html);
+                       for (var key in json) {
+                           if (json.hasOwnProperty(key)) {
+                                html += '<option value='+json[key]+'>'+json[key]+'</option>';
+                                unique[key] = json[key].model;
+                                console.log(unique.key);
+
+                           }
+                        }
+                        elem.html(html);
+
+                      }
+                    });
+
+                 }
+               
+
+            });
+
+
+        $("#brau-model").change(function () {
+            var elem = $("#brau-brand");
+            var selectedMake = $('option:selected', elem).val();
+            var elem = $("#brau-model");
+            var selectedModel = $('option:selected', elem).val();
+            if(selectedModel == 'no_selection')
+            {
+                alert("Please select Make");
+            }else{
+
+                    $.ajax({url: "<?php echo $garage_getmake; ?>",
+                        data:{'model':selectedModel,
+                                'category':selectedMake
+                        },
+                        beforeSend: function(){
+                        },
+                        success: function(result) {
+                            var elem = $("#brau-year");
+                            var json = JSON.parse(result);
+                            var html;
+                            //console.log(html);
+                           for (var key in json) {
+                               if (json.hasOwnProperty(key)) {
+                                    html += '<option value='+json[key]+'>'+json[key]+'</option>';
+                                  
+                               }
+                            }
+                            elem.html(html);
+
+                        }
+                    });
+            }
+                
+
+            });
+
+
+});
+</script>
+
+
+<style>
+#brau-search {
+    padding: 2% 70% 15% 0%;
+}
+#form-brausearch {display: block !important;padding: 7% 5% 5% 5%;background-color: #2668b2;box-shadow: -5px 5px 40px rgba(0,0,0,.7);z-index: 1;}
+#form-brausearch span { font-size: 2vw; font-weight: 100;line-height: 100%; color:#FFF; display:block; margin-bottom:15px;}
+#form-brausearch strong {line-height: 100%;}
+#form-brausearch .input-text, #form-brausearch .option-text {margin-top:1%; padding: 1% 5%; background-color: #fff; color: #000; width: 100%; min-height: fit-content; line-height: 100%; font-size: .85vw;}
+#form-brausearch > * {color: #fff;}
+#form-brausearch label {font-size: 1vw;line-height: 180%; font-weight:600;}
+#form-brausearch button {display: block; margin: 1% auto; padding: 4% 10%; font-size: 1vw; line-height: 13px; font-weight: 400; background: #e74c3c; border: 1px solid #e74c3c; border-radius: 0; box-shadow: none;}
+#form-brausearch button:hover { border-color: #fff;background-color: transparent;}
+#form-brausearch a {display: block;text-align: center;margin-top: 8%;font-size: .9vw;line-height: 100%;}
+</style>

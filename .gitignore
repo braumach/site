@@ -20,6 +20,10 @@
 # «Invalid template file: 'vendor/magento/module-theme/view/frontend/templates/page/js/require_js.phtml'» in Windows:
 # https://github.com/braumach/site/issues/2
 !/vendor/magento/framework/View/Element/Template/File/Validator.php
+# 2020-09-02 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "Add the `vendor/magento/module-contact/view/frontend/templates/customsearch.phtml` custom file to the source control":
+# https://github.com/braumach/site/issues/6
+!/vendor/magento/module-contact/view/frontend/templates/customsearch.phtml
 /vendor/codeception
 /vendor/magento/framework/Test
 /vendor/magento/magento2-functional-testing-framework
